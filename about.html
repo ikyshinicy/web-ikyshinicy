@@ -32,7 +32,16 @@
     .menu-btn span{display:block;width:22px;height:2px;background:var(--ink);border-radius:2px;transition:.3s;}
 
     .page-wrap{width:100%;}
-    .about-hero{padding:140px calc(50% - 550px) 80px;display:block;border-bottom:3px solid var(--ink);}
+    .about-hero{padding:140px calc(50% - 550px) 80px;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:center;border-bottom:3px solid var(--ink);}
+    .about-visual{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px;}
+    .about-illustration{width:100%;max-width:380px;filter:drop-shadow(0 24px 40px rgba(0,0,0,.18));position:relative;z-index:2;}
+    .float-slow{animation:about-floaty 5.5s ease-in-out infinite;}
+    @keyframes about-floaty{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+    @media (max-width:900px){
+      .about-hero{grid-template-columns:1fr;padding-top:120px;}
+      .about-visual{order:-1;min-height:auto;margin-bottom:8px;}
+      .about-illustration{max-width:280px;}
+    }
     .about-alias{font-family:'DM Sans',sans-serif;font-size:16px;font-weight:500;color:var(--sky);letter-spacing:.5px;margin-bottom:8px;}
     .about-card-alias{font-size:13px;color:rgba(9,9,9,.5);margin-top:2px;margin-bottom:0;}
     .about-support{margin-top:28px;}
@@ -123,6 +132,10 @@
       <div class="support-label">Social Media</div>
       <div class="support-btns" id="social-btns"></div>
     </div>
+  </div>
+
+  <div class="about-visual">
+    <img class="about-illustration float-slow" src="assets/img/generated/about-final.png" alt="Rizky Reranza illustration"/>
   </div>
 </section>
 
