@@ -114,9 +114,10 @@ function updateMusicBtn() {
   if (!btn) return;
   const playing = !music.paused;
   const play = btn.querySelector('.play-icon'), pause = btn.querySelector('.pause-icon');
+  const indicator = btn.querySelector('.music-indicator');
   if (play) play.style.display = playing ? 'none' : 'block';
   if (pause) pause.style.display = playing ? 'block' : 'none';
-  btn.style.background = playing ? 'var(--sky)' : 'var(--lime)';
+  if (indicator) indicator.style.background = playing ? 'var(--sky)' : 'var(--lime)';
 }
 function toggleMusic() {
   if (!music) return;
