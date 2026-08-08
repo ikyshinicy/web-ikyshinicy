@@ -32,7 +32,8 @@
       border-bottom: 2.5px solid var(--ink);
     }
     .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; display: flex; align-items: center; gap: 10px; }
-    .logo-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--yellow); border: 2.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; }
+    .logo-dot { width: 26px; height: 26px; border-radius: 50%; background: var(--yellow); border: 2.5px solid var(--ink); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 800; overflow: hidden; }
+    .logo-dot img { width: 100%; height: 100%; object-fit: cover; display: block; }
     nav { display: flex; gap: 4px; align-items: center; }
     nav a { font-size: 13px; font-weight: 500; padding: 7px 14px; border-radius: 999px; transition: all .2s; }
     nav a:hover { background: rgba(0,0,0,.06); }
