@@ -46,7 +46,7 @@
 <!-- ============ HEADER ============ -->
 <header>
   <a href="index.html" class="logo">
-    <span class="logo-dot" id="music-btn" onclick="toggleMusic()" title="Play / Pause musik">
+    <span class="logo-dot" id="music-btn" onclick="event.preventDefault(); event.stopPropagation(); toggleMusic();" title="Play / Pause musik">
       <img src="assets/img/1779092530823-ikyshinicy-logo-final_zl52lm.webp" alt="Iky Shinicy logo"/>
       <span class="music-indicator">
         <svg class="play-icon" width="7" height="7" viewBox="0 0 24 24" fill="#0E0E0E"><path d="M8 5v14l11-7z"/></svg>
