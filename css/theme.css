@@ -146,7 +146,7 @@ main section { position: relative; }
 }
 .hero-inner {
   max-width: var(--maxw); margin: 0 auto; position: relative; z-index: 2;
-  display: grid; grid-template-columns: 1.05fr .95fr; gap: 40px; align-items: center;
+  display: grid; grid-template-columns: .92fr 1.08fr; gap: 40px; align-items: center;
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600;
@@ -163,7 +163,8 @@ main section { position: relative; }
   margin-top: 24px; font-size: clamp(15px, 1.4vw, 18px); line-height: 1.65;
   color: var(--muted); max-width: 460px; animation: fadeUp .7s .2s ease both;
 }
-.hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; animation: fadeUp .7s .3s ease both; }
+.hero-actions { display: flex; gap: 12px; margin-top: 32px; flex-wrap: wrap; animation: fadeUp .7s .3s ease both; }
+.hero-actions .btn { padding: 11px 20px; font-size: 13.5px; }
 .hero-donate { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; animation: fadeUp .7s .38s ease both; }
 .pill-support {
   display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 13.5px;
@@ -173,8 +174,8 @@ main section { position: relative; }
 .pill-support:hover { transform: translateY(-2px); border-color: var(--ink); box-shadow: 0 6px 14px rgba(0,0,0,.08); }
 .pill-ic { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; }
 
-.hero-right { position: relative; display: flex; align-items: center; justify-content: center; min-height: 420px; }
-.hero-illustration { width: 118%; max-width: 640px; filter: drop-shadow(0 24px 40px rgba(0,0,0,.18)); position: relative; z-index: 2; }
+.hero-right { position: relative; display: flex; align-items: center; justify-content: center; min-height: 460px; }
+.hero-illustration { width: 138%; max-width: 780px; filter: drop-shadow(0 24px 40px rgba(0,0,0,.18)); position: relative; z-index: 2; }
 .blob { position: absolute; border-radius: 46% 54% 60% 40% / 52% 44% 56% 48%; z-index: 1; }
 .blob-sky { width: 380px; height: 380px; background: rgba(8,168,245,.16); right: 2%; top: 8%; animation: blobFloat 9s ease-in-out infinite; }
 .blob-lime { width: 220px; height: 220px; background: rgba(184,255,0,.28); left: 0; bottom: 6%; animation: blobFloat 11s ease-in-out infinite reverse; }
