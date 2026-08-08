@@ -8,7 +8,7 @@
   --ink: #0E0E0E;
   --sky: #08A8F5;
   --blue: #1B6EF3;
-  --lime: #B8FF00;
+  --lime: #CEE66A;
   --lime-soft: #CFE86B;
   --lavender: #E9E4F8;
   --lightblue: #E1EFFB;
@@ -44,7 +44,7 @@ img { display: block; max-width: 100%; }
 .brush-word {
   font-family: 'Caveat', cursive;
   font-weight: 700;
-  color: var(--blue);
+  color: var(--lime);
   display: inline-block;
   line-height: .8;
   transform: rotate(-2deg);
@@ -155,8 +155,8 @@ main section { position: relative; }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600;
-  padding: 9px 18px; background: var(--blue); color: var(--white); border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(27,110,243,.28); margin-bottom: 26px;
+  padding: 9px 18px; background: var(--lime); color: var(--ink); border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(120,180,0,.28); margin-bottom: 26px;
   animation: fadeUp .6s ease both;
 }
 .hero h1 {
