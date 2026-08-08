@@ -44,7 +44,7 @@ img { display: block; max-width: 100%; }
 .brush-word {
   font-family: 'Caveat', cursive;
   font-weight: 700;
-  color: var(--lime);
+  color: var(--blue);
   display: inline-block;
   line-height: .8;
   transform: rotate(-2deg);
@@ -79,7 +79,7 @@ header {
 .logo-dot:hover { transform: scale(1.08) rotate(-6deg); }
 .logo-dot .music-indicator {
   position: absolute; right: -3px; bottom: -3px; width: 15px; height: 15px; border-radius: 50%;
-  background: var(--lime); border: 2px solid var(--paper); display: flex; align-items: center; justify-content: center;
+  background: var(--white); border: 2px solid var(--paper); display: flex; align-items: center; justify-content: center;
 }
 .logo-dot .pause-icon { display: none; }
 nav { display: flex; gap: 4px; align-items: center; }
@@ -155,8 +155,8 @@ main section { position: relative; }
 }
 .hero-badge {
   display: inline-flex; align-items: center; gap: 9px; font-size: 12.5px; font-weight: 600;
-  padding: 9px 18px; background: var(--lime); border-radius: 999px;
-  box-shadow: 0 6px 16px rgba(120,180,0,.28); margin-bottom: 26px;
+  padding: 9px 18px; background: var(--blue); color: var(--white); border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(27,110,243,.28); margin-bottom: 26px;
   animation: fadeUp .6s ease both;
 }
 .hero h1 {
@@ -315,17 +315,17 @@ footer { background: var(--ink); color: var(--white); padding: 64px 24px 28px; p
 }
 #splash.hide { transform: translateY(-100%); }
 .splash-logo {
-  width: 82px; height: 82px; border-radius: 50%; background: var(--lime); padding: 5px;
+  width: 82px; height: 82px; border-radius: 50%; background: var(--white); padding: 5px;
   display: flex; align-items: center; justify-content: center;
   animation: splashPulse 1.5s ease-in-out infinite, splashIn .6s cubic-bezier(.34,1.56,.64,1) both;
 }
 .splash-logo img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 .splash-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(30px,7vw,52px); letter-spacing: -2px; color: var(--white); animation: splashIn .7s .2s cubic-bezier(.34,1.56,.64,1) both; }
-.splash-name span { color: var(--lime); }
+.splash-name span { color: var(--white); }
 .splash-bar { width: 120px; height: 3px; background: rgba(255,255,255,.12); border-radius: 999px; overflow: hidden; }
-.splash-bar-fill { height: 100%; width: 0; background: var(--lime); border-radius: 999px; animation: splashBar 1.8s .3s cubic-bezier(.4,0,.2,1) forwards; }
+.splash-bar-fill { height: 100%; width: 0; background: var(--white); border-radius: 999px; animation: splashBar 1.8s .3s cubic-bezier(.4,0,.2,1) forwards; }
 @keyframes splashIn { from { opacity: 0; transform: translateY(18px) scale(.85); } to { opacity: 1; transform: none; } }
-@keyframes splashPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(184,255,0,.4); } 50% { box-shadow: 0 0 0 16px rgba(184,255,0,0); } }
+@keyframes splashPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,.4); } 50% { box-shadow: 0 0 0 16px rgba(255,255,255,0); } }
 @keyframes splashBar { from { width: 0; } to { width: 100%; } }
 
 /* ---------- Gallery Lightbox ---------- */
