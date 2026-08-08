@@ -1,0 +1,18 @@
+{
+  "cleanUrls": true,
+  "functions": {
+    "api/publish.js": {
+      "memory": 128,
+      "maxDuration": 10
+    }
+  },
+  "redirects": [
+    { "source": "/home", "destination": "/", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/galleryprompt", "destination": "/gallery.html" },
+    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/about", "destination": "/about.html" }
+  ]
+}

@@ -1,0 +1,250 @@
+/* ============================================
+   IKYSHINICY.XYZ — Global Stylesheet
+   style.css v1.0
+   ============================================ */
+
+/* ── VARIABLES ── */
+:root {
+  /* Brand Colors */
+  --sky: #08A8F5;
+  --lime: #B8FF00;
+  --ink: #090909;
+  --white: #fff;
+  --yellow: #FFD21A;
+  --paper: #F7F1E8;
+  --muted: #6b6560;
+
+  /* Jasa Pages Colors */
+  --blue: #1B6EF3;
+  --blue-dark: #1451C4;
+  --blue-light: #EEF4FF;
+  --cyan: #06B6D4;
+  --paper-blue: #F8FAFF;
+  --border: rgba(27,110,243,.12);
+  --green: #10B981;
+  --orange: #F97316;
+  --orange-light: #FFF7ED;
+  --purple: #7C3AED;
+
+  /* Layout */
+  --max-w: 1100px;
+  --px: max(24px, calc(50% - var(--max-w) / 2));
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; color: var(--ink); overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* ── TYPOGRAPHY ── */
+.font-syne { font-family: 'Syne', sans-serif; }
+
+/* ── CONTAINER ── */
+/* Gunakan class .wrap untuk membungkus konten agar max-width terjaga */
+.wrap {
+  width: 100%;
+  max-width: var(--max-w);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: max(24px, calc(50% - var(--max-w) / 2));
+  padding-right: max(24px, calc(50% - var(--max-w) / 2));
+}
+
+/* Shortcut padding x saja (tanpa override padding atas/bawah) */
+.px { 
+  padding-left: var(--px);
+  padding-right: var(--px);
+}
+
+/* ── HEADER (Jasa Pages) ── */
+.site-header {
+  position: fixed; z-index: 1000; top: 0; left: 0; right: 0;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px var(--px);
+  background: rgba(248,250,255,.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1.5px solid var(--border);
+}
+.site-header .logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.site-header .logo-dot {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--blue); flex-shrink: 0;
+}
+.site-header nav { display: flex; gap: 6px; align-items: center; }
+.site-header nav a {
+  font-size: 13px; font-weight: 500; padding: 7px 14px;
+  border-radius: 999px; transition: all .2s;
+}
+.site-header nav a:hover { background: var(--blue-light); color: var(--blue); }
+.site-header nav .nav-cta { background: var(--blue); color: var(--white); }
+.site-header nav .nav-cta:hover { background: var(--blue-dark); }
+.menu-btn {
+  display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+}
+.menu-btn span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+
+/* ── SECTION BASE (Jasa Pages) ── */
+.section {
+  padding: 80px var(--px);
+}
+.section-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--blue); margin-bottom: 10px;
+}
+.section-title {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(26px, 4vw, 42px); letter-spacing: -1.5px; margin-bottom: 10px;
+}
+.section-sub {
+  font-size: 15px; color: var(--muted); max-width: 520px; line-height: 1.7;
+}
+
+/* ── HERO (Jasa Pages) ── */
+.jasa-hero {
+  padding: 120px var(--px) 60px;
+  position: relative; overflow: hidden;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 999px; margin-bottom: 20px; position: relative; z-index: 1;
+}
+.jasa-hero h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(32px, 5vw, 64px); letter-spacing: -2px; line-height: .92;
+  color: var(--white); text-transform: uppercase; position: relative; z-index: 1;
+}
+.jasa-hero .hero-sub {
+  margin-top: 16px; font-size: 15px; color: rgba(255,255,255,.6);
+  max-width: 480px; line-height: 1.7; position: relative; z-index: 1;
+}
+
+/* ── PRICING CARD ── */
+.pricing-card {
+  background: var(--white); border-radius: 24px; padding: 32px 28px;
+  border: 1.5px solid var(--border); transition: all .25s;
+  box-shadow: 0 4px 24px rgba(27,110,243,.06);
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.pricing-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(27,110,243,.14); }
+.pricing-card.popular { border-color: var(--blue); box-shadow: 0 8px 32px rgba(27,110,243,.18); }
+.popular-badge {
+  position: absolute; top: 20px; right: 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; color: var(--white);
+}
+.card-tier { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
+.card-name { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.5px; margin-bottom: 20px; }
+.price-idr, .price-usd { display: none; }
+.price-idr.show, .price-usd.show { display: block; }
+.price-main { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 36px; letter-spacing: -1.5px; }
+.price-main span { font-size: 16px; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.price-note { font-size: 12px; color: var(--green); font-weight: 500; margin-top: 4px; }
+.divider { border: none; border-top: 1.5px solid var(--border); margin: 20px 0; }
+.card-duration { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.card-duration strong { color: var(--ink); }
+.feature-list { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.feature-row { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; }
+.feature-check { color: var(--green); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+.feature-x { color: #D1D5DB; font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+/* ── BUTTONS ── */
+.btn-order {
+  margin-top: 24px; display: flex; align-items: center; justify-content: center; gap: 8px;
+  font-size: 13px; font-weight: 700; padding: 14px 20px; border-radius: 14px;
+  border: 2px solid var(--ink); cursor: pointer; transition: all .2s;
+  background: transparent; color: var(--ink); text-decoration: none;
+}
+.btn-order:hover { background: var(--ink); color: var(--white); }
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 700; padding: 14px 28px;
+  border-radius: 999px; background: var(--white); transition: all .2s;
+}
+.btn-wa:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.2); }
+
+/* ── CURRENCY TOGGLE ── */
+.toggle-wrap { display: flex; justify-content: center; margin: 48px 0 12px; }
+.currency-toggle {
+  display: flex; background: var(--white); border: 1.5px solid var(--border);
+  border-radius: 999px; padding: 4px; gap: 4px;
+  box-shadow: 0 4px 16px rgba(27,110,243,.08);
+}
+.toggle-btn {
+  font-size: 13px; font-weight: 600; padding: 8px 20px; border-radius: 999px;
+  border: none; cursor: pointer; transition: all .2s; background: transparent; color: var(--muted);
+}
+.toggle-btn.active { background: var(--blue); color: var(--white); }
+.toggle-note { text-align: center; font-size: 12px; color: var(--muted); margin-bottom: 32px; }
+
+/* ── NOTE STRIP ── */
+.note-strip {
+  margin: 0 var(--px) 60px; padding: 20px 28px;
+  border-radius: 16px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.note-strip p { font-size: 13px; color: var(--ink); line-height: 1.6; }
+
+/* ── CTA SECTION ── */
+.cta-section {
+  margin: 0 var(--px) 80px; padding: 60px 40px; text-align: center;
+  border-radius: 24px; color: var(--white);
+}
+.cta-section h2 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(22px, 4vw, 36px); letter-spacing: -1px; margin-bottom: 12px;
+}
+.cta-section p { font-size: 15px; opacity: .85; margin-bottom: 28px; }
+
+/* ── BACK LINK ── */
+.back-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; color: var(--blue);
+  padding: 0 var(--px) 40px;
+}
+.back-link:hover { text-decoration: underline; }
+
+/* ── BREADCRUMB ── */
+.breadcrumb { font-size: 12px; color: rgba(255,255,255,.4); margin-bottom: 16px; position: relative; z-index: 1; }
+.breadcrumb a { color: rgba(255,255,255,.4); }
+.breadcrumb a:hover { color: var(--cyan); }
+.breadcrumb span { color: var(--cyan); }
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--ink); color: var(--white);
+  padding: 32px var(--px);
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 12px; font-size: 13px;
+}
+.footer-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 16px; }
+.footer-links { display: flex; gap: 20px; color: rgba(255,255,255,.4); }
+.footer-links a:hover { color: var(--white); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up { animation: fadeUp .4s ease both; }
+
+/* ── MOBILE ── */
+@media(max-width: 768px) {
+  :root {
+    --px: 20px;
+  }
+  .site-header nav { display: none; }
+  .site-header nav.open {
+    display: flex; flex-direction: column;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--paper-blue); padding: 20px;
+    border-bottom: 1.5px solid var(--border); gap: 8px;
+  }
+  .menu-btn { display: flex; }
+  .note-strip { margin: 0 20px 40px; }
+  .cta-section { margin: 0 20px 60px; padding: 40px 24px; }
+  .back-link { padding: 0 20px 40px; }
+}

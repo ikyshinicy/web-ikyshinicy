@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rizky Reranza | Creative Content Creator</title>
+  <meta name="description" content="Content Creator yang berfokus pada karya hiburan, edukatif, dan inspiratif dengan pendekatan kreatif dan inovatif."/>
+  <meta name="author" content="Rizky Reranza"/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="canonical" href="https://ikyshinicy.xyz"/>
+  <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/ikyshinicy/rizkyreranza/main/assets/img/favicon.ico">
+
+  <meta property="og:title" content="Rizky Reranza | Creative Content Creator"/>
+  <meta property="og:description" content="Content Creator yang berfokus pada karya hiburan, edukatif, dan inspiratif dengan pendekatan kreatif dan inovatif."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://ikyshinicy.xyz"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&family=Caveat:wght@600;700&display=swap" rel="stylesheet"/>
+  <script src="js/colorizer.js" defer></script>
+  <link rel="stylesheet" href="css/theme.css"/>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash">
+  <div class="splash-logo">
+    <svg width="34" height="34" viewBox="0 0 24 24" fill="#0E0E0E"><path d="M8 5v14l11-7z"/></svg>
+  </div>
+  <div class="splash-name">Rizky <span>Reranza</span></div>
+  <div class="splash-bar"><div class="splash-bar-fill"></div></div>
+</div>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+      const s = document.getElementById('splash');
+      s.classList.add('hide');
+      setTimeout(() => { s.style.display = 'none'; }, 800);
+    }, 2000);
+  });
+</script>
+
+<div class="noise"></div>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <a href="index.html" class="logo">
+    <span class="logo-dot" id="music-btn" onclick="toggleMusic()" title="Play / Pause musik">
+      <svg class="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="#0E0E0E"><path d="M8 5v14l11-7z"/></svg>
+      <svg class="pause-icon" width="13" height="13" viewBox="0 0 24 24" fill="#0E0E0E"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+    </span>
+    Rizky Reranza
+  </a>
+  <nav id="main-nav">
+    <a href="index.html" class="active">Home</a>
+    <a href="projects.html">Projects</a>
+    <a href="galleryprompt.html">Gallery Prompt</a>
+    <a href="service.html">Service</a>
+    <a href="about.html">About</a>
+  </nav>
+  <div class="header-right">
+    <a href="about.html" class="nav-cta">Contact Me
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </a>
+    <div class="menu-btn" id="menu-btn" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</header>
+
+<main>
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <!-- decorative doodles -->
+    <svg class="doodle doodle-spark d1" viewBox="0 0 40 40"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="#0E0E0E"/></svg>
+    <svg class="doodle doodle-spark d2" viewBox="0 0 40 40"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="#08A8F5"/></svg>
+
+    <div class="hero-inner">
+      <div class="hero-left">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0E0E0E"><path d="M12 2 L14 9 L21 10 L14 12 L12 19 L10 12 L3 10 L10 9 Z"/></svg>
+          Content Creator · Creative Systems Builder · Human-Led AI Creation
+        </div>
+        <h1>Creative<br><span class="brush-word">Content</span><br>Creator</h1>
+        <p class="hero-sub" id="hero-bio">Content Creator yang berfokus pada karya Hiburan, Edukatif, dan Inspiratif dengan pendekatan Kreatif dan Inovatif.</p>
+
+        <div class="hero-actions">
+          <a href="https://saweria.co/ikyshinicy" target="_blank" rel="noopener" class="btn btn-primary">
+            Traktir Saya Kopi
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
+          </a>
+          <a href="projects.html" class="btn btn-secondary">Lihat Karya</a>
+        </div>
+
+        <div class="hero-donate">
+          <a href="https://saweria.co/ikyshinicy" target="_blank" rel="noopener" class="pill-support">
+            <span class="pill-ic" style="background:#7C3AED">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z"/></svg>
+            </span>Saweria</a>
+          <a href="https://ko-fi.com/ikyshinicy" target="_blank" rel="noopener" class="pill-support">
+            <span class="pill-ic" style="background:#08A8F5">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="#fff"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8z"/></svg>
+            </span>Ko-Fi</a>
+          <a href="https://trakteer.id/ikyshinicy/tip" target="_blank" rel="noopener" class="pill-support">
+            <span class="pill-ic" style="background:#F97316">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="1.5" fill="#fff"/></svg>
+            </span>Trakteer</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="blob blob-sky"></div>
+        <div class="blob blob-lime"></div>
+        <svg class="doodle hero-whoosh" viewBox="0 0 120 40"><path d="M4 30 C30 6 60 6 88 24" fill="none" stroke="#0E0E0E" stroke-width="3" stroke-linecap="round"/><path d="M92 22 l10 -2 -4 10" fill="none" stroke="#0E0E0E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <img class="hero-illustration float-slow" src="assets/img/generated/hero-final.png" alt="Rizky Reranza creative studio illustration"/>
+      </div>
+    </div>
+
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,64 C240,120 480,20 720,54 C960,88 1200,38 1440,72 L1440,120 L0,120 Z" fill="var(--lime-soft)"/></svg></div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats-section">
+    <div class="stats-inner">
+      <div class="stat-card">
+        <span class="stat-ic" style="background:#DFF3C9;color:#2f7d1f">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </span>
+        <div><div class="stat-num" id="stat-projects">13+</div><div class="stat-label">Projects</div></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-ic" style="background:#FBE0EC;color:#c23370">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2a10 10 0 1 0 0 20c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.3-.5-.7-.5-1.2a2 2 0 0 1 2-2h1.5A4.5 4.5 0 0 0 22 11c0-5-4.5-9-10-9z"/></svg>
+        </span>
+        <div><div class="stat-num" id="stat-gallery">44+</div><div class="stat-label">Prompt Gallery</div></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-ic" style="background:#FFE7CC;color:#d96a12">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/></svg>
+        </span>
+        <div><div class="stat-num" id="stat-services">4</div><div class="stat-label">Services</div></div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-ic" style="background:#D6E9FB;color:#1b6ef3">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <div><div class="stat-num">100%</div><div class="stat-label">Passion</div></div>
+      </div>
+    </div>
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,40 C320,110 520,10 760,60 C1040,116 1200,30 1440,80 L1440,120 L0,120 Z" fill="var(--lavender)"/></svg></div>
+  </section>
+
+  <!-- ============ PROMPT GALLERY ============ -->
+  <section class="gallery-section fade-in">
+    <svg class="scroll-doodle" style="width:52px;top:70px;left:5%" viewBox="0 0 60 60"><path d="M6 40 C18 10 40 10 54 30" fill="none" stroke="#6C4BE6" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 8"/></svg>
+    <svg class="scroll-doodle" style="width:26px;top:120px;right:4%" viewBox="0 0 40 40"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="#6C4BE6"/></svg>
+    <div class="section-inner">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow" style="color:#6C4BE6">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+            GALLERY PROMPT
+          </span>
+          <h2 class="section-title">Prompt <span class="brush-word" style="color:#6C4BE6">Gallery</span></h2>
+        </div>
+        <a href="galleryprompt.html" class="see-all">Lihat Semua
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="gallery-grid" id="gallery-preview"></div>
+    </div>
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,80 C220,20 470,110 720,58 C980,8 1220,100 1440,52 L1440,120 L0,120 Z" fill="var(--lightblue)"/></svg></div>
+  </section>
+
+  <!-- ============ LATEST PROJECTS ============ -->
+  <section class="projects-section fade-in">
+    <svg class="scroll-doodle" style="width:60px;top:60px;right:5%" viewBox="0 0 64 64"><path d="M4 30 L58 6 L40 58 L34 38 Z" fill="none" stroke="#1b6ef3" stroke-width="3" stroke-linejoin="round"/></svg>
+    <div class="section-inner">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow" style="color:#1b6ef3">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+            LATEST PROJECTS
+          </span>
+          <h2 class="section-title">Latest <span class="brush-word" style="color:#1b6ef3">Projects</span></h2>
+        </div>
+        <a href="projects.html" class="see-all see-all-blue">Lihat Semua
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="projects-grid" id="projects-preview"></div>
+    </div>
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,60 C260,10 460,100 720,62 C980,24 1180,104 1440,58 L1440,120 L0,120 Z" fill="var(--cream)"/></svg></div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="services-section fade-in">
+    <svg class="scroll-doodle" style="width:40px;top:70px;left:6%" viewBox="0 0 40 40"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="#F97316"/></svg>
+    <img class="services-illustration float-slow" src="assets/img/generated/services-final.png" alt="Illustration"/>
+    <svg class="doodle svc-play" viewBox="0 0 90 90"><polygon points="20,15 80,45 20,75" fill="none" stroke="#F97316" stroke-width="5" stroke-linejoin="round"/></svg>
+    <div class="section-inner">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow" style="color:#F97316">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            SERVICES
+          </span>
+          <h2 class="section-title">My <span class="brush-word" style="color:#F97316">Services</span></h2>
+        </div>
+        <a href="service.html" class="see-all see-all-orange">Lihat Layanan
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <div class="services-grid" id="services-grid"></div>
+    </div>
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,50 C280,110 500,10 760,56 C1020,102 1220,26 1440,70 L1440,120 L0,120 Z" fill="var(--purple)"/></svg></div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section class="cta-section fade-in">
+    <svg class="doodle cta-arrow" viewBox="0 0 120 60"><path d="M8 40 C40 8 80 8 100 30" fill="none" stroke="#B8FF00" stroke-width="3.5" stroke-linecap="round"/><path d="M104 28 l6 -8 -12 -1" fill="none" stroke="#B8FF00" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <div class="cta-inner">
+      <div class="cta-text">
+        <h2>Buat Project Kamu<br>Let's <span class="cta-accent">Gooo!!!</span></h2>
+        <p id="cta-line">Bangun identitas Project kamu Sekarang Juga.</p>
+        <a href="mailto:hello@ikyshinicy.com" class="btn btn-cta" id="cta-email">Mulai Sekarang
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+      <img class="cta-illustration float-slow" src="assets/img/generated/cta-final.png" alt="Illustration"/>
+    </div>
+    <div class="wave-divider"><svg viewBox="0 0 1440 120" preserveAspectRatio="none"><path d="M0,70 C240,20 500,100 760,58 C1020,18 1220,96 1440,54 L1440,120 L0,120 Z" fill="var(--ink)"/></svg></div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <svg class="doodle foot-star fs1" viewBox="0 0 40 40"><path d="M20 2 L23 17 L38 20 L23 23 L20 38 L17 23 L2 20 L17 17 Z" fill="#B8FF00"/></svg>
+  <svg class="doodle foot-squiggle" viewBox="0 0 100 20"><path d="M2 10 q12 -10 24 0 t24 0 t24 0" fill="none" stroke="#B8FF00" stroke-width="2.5" stroke-linecap="round"/></svg>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <span class="logo-dot" style="cursor:default">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="#0E0E0E"><path d="M8 5v14l11-7z"/></svg>
+        </span>
+        Rizky Reranza
+      </div>
+      <p>Creative Systems Builder<br>Human-Led AI Creation</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigation</h4>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="galleryprompt.html">Gallery Prompt</a>
+      <a href="service.html">Service</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="https://saweria.co/ikyshinicy" target="_blank" rel="noopener">Saweria</a>
+      <a href="https://ko-fi.com/ikyshinicy" target="_blank" rel="noopener">Ko-fi</a>
+      <a href="https://trakteer.id/ikyshinicy/tip" target="_blank" rel="noopener">Trakteer</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <div class="footer-social">
+        <a href="https://instagram.com/ikyshinicy" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@ikyshinicy" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@ikyshinicy" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-support"><div id="support-section"></div></div>
+  <div class="footer-bottom">
+    <span id="footer-copy">© 2026 Rizky Reranza. All rights reserved.</span>
+    <a href="admin.html" class="footer-admin">Rizky Reranza</a>
+  </div>
+</footer>
+
+<!-- Gallery Lightbox -->
+<div class="lightbox" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <div class="lb-panel">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0E0E0E" stroke-width="2.4" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+    </button>
+    <div class="lb-media"><img id="lb-img" src="" alt=""/></div>
+    <div class="lb-content">
+      <div class="lb-cat" id="lb-cat"></div>
+      <div class="lb-title" id="lb-title"></div>
+      <div class="lb-prompt-label">Prompt</div>
+      <div class="lb-prompt" id="lb-prompt"></div>
+      <div class="lb-actions">
+        <button class="lb-copy" id="lb-copy" onclick="copyPrompt()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          <span id="lb-copy-txt">Copy Prompt</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Background Music -->
+<audio id="bg-music">
+  <source src="https://raw.githubusercontent.com/ikyshinicy/rizkyreranza/main/assets/audio/niwo-tak-takut-letih.mp3" type="audio/mpeg">
+</audio>
+
+<script src="js/data.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+/* ============================================================
+   pages.css — Bring inner pages into the Home design system
+   Scoped by body[data-page]. Home is NOT affected.
+   ============================================================ */
+:root {
+  --sky:#08A8F5; --blue:#1B6EF3; --lime:#B8FF00; --ink:#0E0E0E;
+  --paper:#F7F1E8; --purple:#6B4EE6; --orange:#F97316; --muted:#6b6560; --white:#fff;
+}
+
+/* ---- Organic wave dividers (shared) ---- */
+.page-wave { line-height:0; width:100%; margin-bottom:-1px; position:relative; z-index:1; }
+.page-wave svg { display:block; width:100%; height:clamp(48px,7vw,110px); }
+
+/* ---- Softer noise on all inner pages ---- */
+body[data-page] .noise { opacity:.05 !important; mix-blend-mode:multiply !important; }
+
+/* ---- Shared page-hero rhythm ---- */
+body[data-page] .page-hero,
+body[data-page] .about-hero { border-bottom:none !important; }
+body[data-page] .page-hero h1,
+body[data-page] .about-name { letter-spacing:-2px !important; }
+
+/* ================= GALLERY PROMPT (lavender / purple) ================= */
+body[data-page="galleryprompt"] { background:#E9E4F8 !important; color:var(--ink) !important; }
+body[data-page="galleryprompt"] .page-hero { background:#F7F1E8; padding-bottom:52px !important; }
+body[data-page="galleryprompt"] .page-hero h1 { color:var(--ink) !important; }
+body[data-page="galleryprompt"] .page-hero h1 span { color:var(--purple) !important; }
+body[data-page="galleryprompt"] .page-hero p { color:var(--muted) !important; }
+body[data-page="galleryprompt"] .filter-bar { background:rgba(233,228,248,.92) !important; border-bottom:none !important; }
+body[data-page="galleryprompt"] .filter-btn { border:1.5px solid rgba(108,75,230,.25) !important; color:#5b5470 !important; background:rgba(255,255,255,.55) !important; }
+body[data-page="galleryprompt"] .filter-btn:hover,
+body[data-page="galleryprompt"] .filter-btn.active { background:var(--purple) !important; color:#fff !important; border-color:var(--purple) !important; }
+body[data-page="galleryprompt"] .galleryprompt-card { border:1px solid rgba(14,14,14,.06) !important; border-radius:18px !important; box-shadow:0 6px 18px rgba(90,70,160,.10) !important; background:#fff !important; }
+body[data-page="galleryprompt"] .galleryprompt-card:hover { transform:translateY(-6px) !important; box-shadow:0 16px 34px rgba(90,70,160,.20) !important; }
+body[data-page="galleryprompt"] .card-body { border-top:none !important; padding:13px 15px 15px !important; }
+body[data-page="galleryprompt"] .card-title { font-size:15px !important; }
+body[data-page="galleryprompt"] .lightbox { background:rgba(14,14,14,.72) !important; backdrop-filter:blur(6px); }
+body[data-page="galleryprompt"] .lightbox-inner { border:none !important; border-radius:24px !important; box-shadow:0 30px 80px rgba(0,0,0,.4) !important; }
+body[data-page="galleryprompt"] .lb-cat { color:var(--purple) !important; }
+body[data-page="galleryprompt"] .lb-prompt { font-family:'DM Sans',sans-serif !important; background:#f5f2ec !important; border:1px solid rgba(14,14,14,.08) !important; border-radius:14px !important; }
+body[data-page="galleryprompt"] .lb-btn { border:none !important; box-shadow:none !important; }
+body[data-page="galleryprompt"] .lb-btn-copy { background:var(--ink) !important; color:#fff !important; }
+body[data-page="galleryprompt"] .lb-btn-copy:hover { background:var(--purple) !important; }
+body[data-page="galleryprompt"] .lb-btn-close { border:1.5px solid rgba(14,14,14,.15) !important; }
+body[data-page="galleryprompt"] .traktir-toggle { border:1.5px solid rgba(14,14,14,.15) !important; box-shadow:0 6px 16px rgba(90,70,160,.12) !important; }
+
+/* ================= PROJECTS (light blue / blue) ================= */
+body[data-page="projects"] { background:#E1EFFB !important; color:var(--ink) !important; }
+body[data-page="projects"] .page-hero { background:#F7F1E8; padding-bottom:52px !important; }
+body[data-page="projects"] .page-hero h1 { color:var(--ink) !important; }
+body[data-page="projects"] .page-hero h1 span { color:var(--blue) !important; }
+body[data-page="projects"] .page-hero p { color:var(--muted) !important; }
+body[data-page="projects"] .cat-card { background:#fff !important; border:1px solid rgba(14,14,14,.06) !important; border-radius:22px !important; box-shadow:0 6px 20px rgba(27,110,243,.08) !important; }
+body[data-page="projects"] .cat-card:hover { transform:translateY(-6px) !important; border-color:rgba(27,110,243,.2) !important; box-shadow:0 16px 34px rgba(27,110,243,.16) !important; }
+body[data-page="projects"] .cat-img { background:#eef2f8 !important; }
+body[data-page="projects"] .cat-label { color:var(--blue) !important; }
+body[data-page="projects"] .cat-title { color:var(--ink) !important; }
+body[data-page="projects"] .cat-desc { color:var(--muted) !important; }
+body[data-page="projects"] .cat-arrow { color:var(--blue) !important; }
+body[data-page="projects"] .progress-text { color:var(--muted) !important; }
+body[data-page="projects"] .progress-track { background:rgba(14,14,14,.08) !important; }
+body[data-page="projects"] .progress-fill { background:linear-gradient(90deg,var(--blue),var(--sky)) !important; }
+body[data-page="projects"] .progress-pct { color:var(--blue) !important; }
+body[data-page="projects"] .count-badge { background:rgba(27,110,243,.12) !important; color:var(--blue) !important; border-color:rgba(27,110,243,.2) !important; }
+
+/* ================= SERVICE (warm cream / orange) ================= */
+body[data-page="service"] { background:#FBF3E7 !important; color:var(--ink) !important; }
+body[data-page="service"] .hero { background:#FCE7C9 !important; border-bottom:none !important; }
+body[data-page="service"] .hero::after { color:rgba(249,115,22,.10) !important; }
+body[data-page="service"] .hero-tag { background:var(--ink) !important; color:#FCE7C9 !important; }
+body[data-page="service"] .hero h1 { color:var(--ink) !important; }
+body[data-page="service"] .hero h1 span { color:var(--orange) !important; }
+body[data-page="service"] .hero-stats { border-top:1.5px solid rgba(14,14,14,.12) !important; }
+body[data-page="service"] .services-section { border-bottom:none !important; max-width:1000px; margin:0 auto; padding:8px 0 40px; }
+body[data-page="service"] .service-item { background:#fff !important; border:1px solid rgba(249,115,22,.14) !important; border-radius:20px !important; box-shadow:0 6px 20px rgba(249,115,22,.07) !important; margin:0 max(24px,calc(50% - 500px)) 16px !important; overflow:hidden; }
+body[data-page="service"] .service-item:nth-child(even) { background:#fff !important; }
+body[data-page="service"] .service-price-tag { background:#FFF3E2 !important; border:1.5px solid rgba(249,115,22,.35) !important; color:#c2560c !important; border-radius:999px !important; }
+body[data-page="service"] .service-name { font-family:'Caveat',cursive !important; font-weight:700 !important; font-size:clamp(24px,3.4vw,34px) !important; letter-spacing:0 !important; }
+body[data-page="service"] .toggle-icon { border:1.5px solid rgba(14,14,14,.18) !important; }
+body[data-page="service"] .service-item.open .toggle-icon { background:var(--orange) !important; color:#fff !important; }
+body[data-page="service"] .feat-dot { background:var(--orange) !important; }
+body[data-page="service"] .btn-lihat { background:var(--ink) !important; color:#fff !important; border:none !important; }
+body[data-page="service"] .btn-lihat:hover { background:var(--orange) !important; color:#fff !important; }
+body[data-page="service"] .cta-section { background:#FCE7C9 !important; border-top:none !important; }
+body[data-page="service"] .cta-section h2 { color:var(--ink) !important; }
+body[data-page="service"] .cta-section h2 span { color:var(--orange) !important; }
+body[data-page="service"] .cta-section p { color:rgba(14,14,14,.6) !important; }
+body[data-page="service"] .btn-cta { background:var(--ink) !important; color:#fff !important; }
+body[data-page="service"] .btn-cta:hover { background:var(--orange) !important; }
+
+/* ================= ABOUT (warm cream editorial / lime) ================= */
+body[data-page="about"] { background:#F7F1E8 !important; color:var(--ink) !important; }
+body[data-page="about"] .about-hero { position:relative; }
+body[data-page="about"] .about-alias { color:var(--blue) !important; }
+body[data-page="about"] .about-name span { color:var(--ink) !important; -webkit-text-stroke:0 !important; }
+body[data-page="about"] .about-role { color:var(--muted) !important; }
+body[data-page="about"] .about-bio { color:var(--ink) !important; }
+body[data-page="about"] .social-btn { border:1.5px solid rgba(14,14,14,.14) !important; box-shadow:0 6px 16px rgba(0,0,0,.06) !important; background:#fff !important; }
+body[data-page="about"] .social-btn:hover { transform:translateY(-3px) !important; box-shadow:0 12px 26px rgba(0,0,0,.12) !important; }
+body[data-page="about"] .about-card { background:#E1EFFB !important; border:none !important; border-radius:24px !important; box-shadow:0 16px 40px rgba(27,110,243,.16) !important; }
+body[data-page="about"] .about-avatar { background:var(--lime) !important; border:none !important; box-shadow:0 8px 20px rgba(120,180,0,.3) !important; }
+body[data-page="about"] .about-card-loc { border:1.5px solid rgba(14,14,14,.12) !important; }
+body[data-page="about"] .card-sup-btn { border:1.5px solid rgba(14,14,14,.12) !important; box-shadow:0 4px 12px rgba(0,0,0,.06) !important; }
+body[data-page="about"] .card-sup-btn:hover { transform:translateY(-2px) !important; box-shadow:0 8px 18px rgba(0,0,0,.1) !important; }
+/* Convert dark contact section into soft lavender editorial block */
+body[data-page="about"] .contact-section { background:#E9E4F8 !important; color:var(--ink) !important; border-bottom:none !important; }
+body[data-page="about"] .contact-section .section-title { color:var(--ink) !important; }
+body[data-page="about"] .contact-section .section-title span { color:var(--purple) !important; }
+body[data-page="about"] .contact-text { color:var(--muted) !important; }
+body[data-page="about"] .contact-email { color:var(--purple) !important; }
+body[data-page="about"] .contact-email:hover { color:var(--blue) !important; }
+body[data-page="about"] .form-group label { color:var(--muted) !important; }
+body[data-page="about"] .form-group input,
+body[data-page="about"] .form-group textarea { background:#fff !important; border:1px solid rgba(14,14,14,.12) !important; color:var(--ink) !important; }
+body[data-page="about"] .form-group input:focus,
+body[data-page="about"] .form-group textarea:focus { border-color:var(--purple) !important; }
+body[data-page="about"] .submit-btn { background:var(--ink) !important; color:#fff !important; border:none !important; }
+body[data-page="about"] .submit-btn:hover { background:var(--purple) !important; }
+
+/* About editorial doodles */
+body[data-page="about"] .about-hero::before {
+  content:''; position:absolute; right:6%; top:120px; width:280px; height:280px; border-radius:46% 54% 60% 40% / 52% 44% 56% 48%;
+  background:rgba(184,255,0,.22); z-index:0; pointer-events:none;
+}
+@media (max-width:768px){ body[data-page="about"] .about-hero::before{ width:180px; height:180px; right:-20px; top:90px; } }

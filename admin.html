@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Iky Shinicy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{--sky:#08A8F5;--lime:#B8FF00;--ink:#090909;--white:#fff;--yellow:#FFD21A;--paper:#F7F1E8;--muted:#6b6560;--danger:#e53e3e;--success:#38a169;}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    body{font-family:'DM Sans',sans-serif;background:#0f0f0f;color:var(--white);min-height:100vh;}
+    a{color:inherit;text-decoration:none;}
+    input,textarea,select{font-family:'DM Sans',sans-serif;}
+    button{font-family:'DM Sans',sans-serif;cursor:pointer;}
+
+    #login-screen{position:fixed;inset:0;background:#0f0f0f;display:flex;align-items:center;justify-content:center;z-index:9999;}
+    .login-box{width:100%;max-width:400px;padding:40px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.1);border-radius:20px;}
+    .login-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;margin-bottom:8px;}
+    .login-logo span{color:var(--sky);}
+    .login-sub{font-size:14px;color:rgba(255,255,255,.4);margin-bottom:32px;}
+    .login-label{font-size:13px;font-weight:500;color:rgba(255,255,255,.5);margin-bottom:8px;display:block;}
+    .login-input{width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 16px;font-size:14px;color:var(--white);outline:none;transition:border-color .2s;margin-bottom:16px;}
+    .login-input:focus{border-color:var(--sky);}
+    .login-btn{width:100%;background:var(--sky);color:var(--ink);font-size:15px;font-weight:600;padding:14px;border-radius:10px;border:none;margin-top:8px;transition:all .2s;}
+    .login-btn:hover{background:var(--lime);}
+    .login-error{font-size:13px;color:var(--danger);margin-top:12px;display:none;}
+
+    #loading-screen{position:fixed;inset:0;background:#0f0f0f;display:none;align-items:center;justify-content:center;z-index:9998;flex-direction:column;gap:16px;}
+    .loading-spinner{width:40px;height:40px;border:3px solid rgba(255,255,255,.1);border-top-color:var(--sky);border-radius:50%;animation:spin .8s linear infinite;}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-text{font-size:14px;color:rgba(255,255,255,.4);}
+
+    #app{display:none;min-height:100vh;}
+    .sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;background:#161616;border-right:1.5px solid rgba(255,255,255,.06);padding:24px 16px;display:flex;flex-direction:column;z-index:100;}
+    .sidebar-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:18px;margin-bottom:4px;padding:0 8px;}
+    .sidebar-logo span{color:var(--sky);}
+    .sidebar-sub{font-size:11px;color:rgba(255,255,255,.3);padding:0 8px;margin-bottom:32px;}
+    .nav-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;font-size:14px;font-weight:500;color:rgba(255,255,255,.5);cursor:pointer;transition:all .2s;margin-bottom:2px;border:none;background:none;width:100%;text-align:left;}
+    .nav-item:hover{background:rgba(255,255,255,.06);color:var(--white);}
+    .nav-item.active{background:rgba(8,168,245,.12);color:var(--sky);}
+    .nav-icon{font-size:16px;width:20px;text-align:center;}
+    .sidebar-footer{margin-top:auto;padding-top:16px;border-top:1.5px solid rgba(255,255,255,.06);}
+    .logout-btn{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.3);cursor:pointer;padding:8px 12px;border-radius:8px;border:none;background:none;width:100%;transition:all .2s;}
+    .logout-btn:hover{color:var(--danger);background:rgba(229,62,62,.06);}
+
+    .main{margin-left:220px;padding:32px;min-height:100vh;}
+    .page-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+    .page-title{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;letter-spacing:-1px;}
+
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:32px;}
+    .stat-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;padding:20px 24px;}
+    .stat-num{font-family:'Syne',sans-serif;font-weight:800;font-size:36px;letter-spacing:-2px;color:var(--sky);}
+    .stat-label{font-size:13px;color:rgba(255,255,255,.4);margin-top:4px;}
+
+    .field-label{font-size:12px;font-weight:500;color:rgba(255,255,255,.4);margin-bottom:6px;display:block;}
+    .field-input{width:100%;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;font-size:13px;color:var(--white);outline:none;transition:border-color .2s;}
+    .field-input:focus{border-color:var(--sky);}
+    .field-input::placeholder{color:rgba(255,255,255,.2);}
+    textarea.field-input{resize:vertical;min-height:80px;line-height:1.5;}
+
+    .progress-field{display:flex;flex-direction:column;gap:8px;}
+    .progress-slider{-webkit-appearance:none;width:100%;height:6px;border-radius:999px;background:rgba(255,255,255,.1);outline:none;}
+    .progress-slider::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--lime);cursor:pointer;border:2px solid var(--ink);}
+    .progress-slider::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--lime);cursor:pointer;border:2px solid var(--ink);}
+    .progress-preview{height:5px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;margin-top:4px;}
+    .progress-preview-fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--lime));transition:width .2s;}
+    .progress-val{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;color:var(--lime);}
+
+    .btn{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;padding:10px 20px;border-radius:8px;border:1.5px solid transparent;transition:all .2s;}
+    .btn-primary{background:var(--sky);color:var(--ink);border-color:var(--sky);}
+    .btn-primary:hover{background:#06a1eb;}
+    .btn-success{background:var(--lime);color:var(--ink);border-color:var(--lime);}
+    .btn-success:hover{background:#a8f000;}
+    .btn-ghost{background:transparent;color:rgba(255,255,255,.6);border-color:rgba(255,255,255,.15);}
+    .btn-ghost:hover{border-color:rgba(255,255,255,.3);color:var(--white);}
+    .btn-danger{background:transparent;color:var(--danger);border-color:rgba(229,62,62,.3);}
+    .btn-danger:hover{background:rgba(229,62,62,.08);}
+    .btn-sm{padding:7px 14px;font-size:12px;}
+
+    .data-table{width:100%;border-collapse:collapse;}
+    .data-table th{font-size:11px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.3);padding:10px 16px;text-align:left;border-bottom:1.5px solid rgba(255,255,255,.06);}
+    .data-table td{font-size:14px;padding:14px 16px;border-bottom:1.5px solid rgba(255,255,255,.04);color:rgba(255,255,255,.8);vertical-align:middle;}
+    .data-table tr:hover td{background:rgba(255,255,255,.02);}
+    .table-wrap{background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);border-radius:14px;overflow:hidden;margin-bottom:24px;}
+
+    .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:9000;align-items:center;justify-content:center;padding:24px;}
+    .modal-overlay.open{display:flex;}
+    .modal{background:#1a1a1a;border:1.5px solid rgba(255,255,255,.1);border-radius:16px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;}
+    .modal-header{padding:20px 24px;border-bottom:1.5px solid rgba(255,255,255,.06);display:flex;align-items:center;justify-content:space-between;}
+    .modal-title{font-family:'Syne',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.5px;}
+    .modal-close{background:none;border:none;color:rgba(255,255,255,.3);font-size:20px;cursor:pointer;padding:4px;line-height:1;}
+    .modal-close:hover{color:var(--white);}
+    .modal-body{padding:24px;display:flex;flex-direction:column;gap:14px;}
+    .modal-footer{padding:16px 24px;border-top:1.5px solid rgba(255,255,255,.06);display:flex;gap:10px;justify-content:flex-end;}
+
+    .img-upload-wrap{display:flex;flex-direction:column;gap:8px;}
+    .img-upload-area{border:2px dashed rgba(255,255,255,.15);border-radius:10px;padding:20px;text-align:center;cursor:pointer;transition:all .2s;position:relative;overflow:hidden;}
+    .img-upload-area:hover{border-color:var(--sky);background:rgba(8,168,245,.04);}
+    .img-upload-area.dragover{border-color:var(--lime);background:rgba(184,255,0,.05);}
+    .img-upload-area input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;}
+    .img-upload-icon{font-size:28px;margin-bottom:8px;}
+    .img-upload-text{font-size:13px;color:rgba(255,255,255,.4);}
+    .img-upload-text strong{color:var(--sky);}
+    .img-preview{width:100%;height:140px;object-fit:cover;border-radius:8px;display:none;border:1.5px solid rgba(255,255,255,.1);}
+    .img-preview.show{display:block;}
+    .img-upload-progress{height:3px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;display:none;}
+    .img-upload-progress.show{display:block;}
+    .img-upload-progress-bar{height:100%;background:var(--sky);border-radius:999px;width:0%;transition:width .3s;}
+    .img-upload-status{font-size:12px;color:rgba(255,255,255,.3);}
+    .img-upload-status.uploading{color:var(--sky);}
+    .img-upload-status.done{color:var(--lime);}
+    .img-upload-status.err{color:var(--danger);}
+
+    .publish-bar{background:rgba(184,255,0,.08);border:1.5px solid rgba(184,255,0,.2);border-radius:12px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px;}
+    .publish-info{font-size:14px;color:rgba(255,255,255,.7);}
+    .publish-info strong{color:var(--lime);}
+    .warn-box{background:rgba(255,210,26,.06);border:1.5px solid rgba(255,210,26,.25);border-radius:12px;padding:14px 20px;font-size:13px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:16px;display:none;}
+    .warn-box strong{color:var(--yellow);}
+    .info-box{background:rgba(8,168,245,.06);border:1.5px solid rgba(8,168,245,.15);border-radius:12px;padding:16px 20px;font-size:13px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:16px;}
+    .info-box strong{color:var(--sky);}
+    .badge{display:inline-block;font-size:11px;font-weight:500;padding:3px 10px;border-radius:999px;}
+    .badge-featured{background:rgba(8,168,245,.15);color:var(--sky);}
+    .section-tab{display:none;}
+    .section-tab.active{display:block;}
+
+    /* ===== COLOR THEME ===== */
+    .color-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-bottom:24px;}
+    .color-card{background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.08);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:12px;}
+    .color-card-label{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .color-card-name{font-family:'Syne',sans-serif;font-weight:700;font-size:15px;}
+    .color-swatch-wrap{display:flex;gap:10px;align-items:center;}
+    .color-swatch{width:48px;height:48px;border-radius:10px;border:2px solid rgba(255,255,255,.15);cursor:pointer;transition:transform .15s;flex-shrink:0;}
+    .color-swatch:hover{transform:scale(1.08);}
+    .color-presets{display:flex;gap:5px;flex-wrap:wrap;}
+    .color-preset{width:22px;height:22px;border-radius:5px;border:2px solid rgba(255,255,255,.15);cursor:pointer;transition:transform .15s;}
+    .color-preset:hover{transform:scale(1.2);border-color:rgba(255,255,255,.5);}
+    .color-hex{font-size:12px;color:rgba(255,255,255,.4);font-family:monospace;}
+    .theme-preview{background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);border-radius:14px;padding:24px;margin-bottom:24px;}
+    .theme-preview-title{font-size:12px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;}
+    .preview-site{border-radius:10px;overflow:hidden;border:1.5px solid rgba(255,255,255,.1);max-width:480px;}
+    .preview-header{padding:12px 16px;display:flex;align-items:center;gap:8px;border-bottom:2px solid #090909;}
+    .preview-dot{width:16px;height:16px;border-radius:50%;border:2px solid #090909;box-shadow:2px 2px 0 #090909;}
+    .preview-title-text{font-family:'Syne',sans-serif;font-weight:800;font-size:13px;}
+    .preview-hero{padding:20px 16px;}
+    .preview-h1{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;line-height:1;margin-bottom:8px;}
+    .preview-sub{font-size:11px;margin-bottom:12px;}
+    .preview-btn{display:inline-block;padding:6px 14px;border-radius:999px;border:2px solid #090909;font-size:11px;font-weight:600;}
+    .preview-section{padding:12px 16px;border-top:2px solid #090909;}
+    .preview-label{font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:8px;}
+    .preview-cards{display:flex;gap:8px;}
+    .preview-card{flex:1;border-radius:8px;border:2px solid #090909;padding:8px;background:#fff;}
+    .preview-card-title{font-size:10px;font-weight:700;color:#090909;margin-bottom:4px;}
+    .preview-card-chip{display:inline-block;font-size:9px;padding:2px 8px;border-radius:999px;font-weight:600;}
+
+    #toast{position:fixed;bottom:24px;right:24px;z-index:99999;display:flex;flex-direction:column;gap:8px;}
+    .toast-item{padding:12px 20px;border-radius:10px;font-size:14px;font-weight:500;border:1.5px solid;animation:slideIn .3s ease;max-width:320px;}
+    .toast-item.success{background:#0d2d1a;border-color:#38a169;color:#68d391;}
+    .toast-item.error{background:#2d0d0d;border-color:var(--danger);color:#fc8181;}
+    .toast-item.info{background:rgba(8,168,245,.1);border-color:rgba(8,168,245,.3);color:var(--sky);}
+    @keyframes slideIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:none}}
+
+    @media(max-width:768px){
+      .sidebar{position:fixed;bottom:0;left:0;right:0;top:auto;width:100%;height:auto;flex-direction:row;padding:0;border-right:none;border-top:1.5px solid rgba(255,255,255,.08);z-index:200;background:#161616;}
+      .sidebar > div:first-child{display:flex;flex-direction:row;flex:1;overflow-x:auto;}
+      .sidebar-logo,.sidebar-sub,.sidebar-footer{display:none;}
+      .nav-item{flex-direction:column;gap:3px;padding:10px 6px 8px;font-size:10px;min-width:56px;border-radius:0;margin-bottom:0;flex:1;justify-content:center;align-items:center;text-align:center;}
+      .nav-icon{font-size:18px;width:auto;}
+      .main{margin-left:0;padding:16px 16px 90px;}
+      .page-title{font-size:22px;}
+      .page-head{margin-bottom:20px;}
+      .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+      .data-table{min-width:500px;}
+      .stats-grid{grid-template-columns:repeat(2,1fr);}
+      .modal-overlay{padding:0;align-items:flex-end;}
+      .modal{border-radius:20px 20px 0 0;border-bottom:none;max-height:92vh;overflow-y:auto;}
+      #toast{bottom:80px;right:12px;left:12px;}
+      .toast-item{max-width:100%;}
+      .publish-bar{flex-direction:column;gap:8px;padding:12px 16px;}
+      .profile-grid{grid-template-columns:1fr !important;}
+      .profile-grid > div[style*="grid-column"]{grid-column:1 !important;}
+    }
+  </style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-logo">Iky <span>Admin</span></div>
+    <div class="login-sub">Panel pengelola konten website</div>
+    <label class="login-label">Password</label>
+    <input type="password" class="login-input" id="login-pass" placeholder="Masukkan password..." onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="login-btn" onclick="doLogin()">Masuk →</button>
+    <div class="login-error" id="login-err">Password salah. Coba lagi.</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.2);margin-top:20px;">Jangan Kepo !!!!<code style="color:rgba(255,255,255,.4)"></code></div>
+  </div>
+</div>
+
+<div id="loading-screen">
+  <div class="loading-spinner"></div>
+  <div class="loading-text" id="loading-text">Memuat data dari GitHub...</div>
+</div>
+
+<div id="app">
+  <div class="sidebar">
+    <div>
+      <div class="sidebar-logo">Iky <span>Admin</span></div>
+      <div class="sidebar-sub">Content Manager</div>
+      <button class="nav-item active" onclick="showTab('dashboard',this)"><span class="nav-icon">📊</span>Dashboard</button>
+      <button class="nav-item" onclick="showTab('profile',this)"><span class="nav-icon">👤</span>Profil</button>
+      <button class="nav-item" onclick="showTab('projects',this)"><span class="nav-icon">🎨</span>Projects</button>
+      <button class="nav-item" onclick="showTab('galleryprompt',this)"><span class="nav-icon">🖼</span>Gallery</button>
+      <button class="nav-item" onclick="showTab('services',this)"><span class="nav-icon">📦</span>Services</button>
+      <button class="nav-item" onclick="showTab('colors',this)"><span class="nav-icon">🎨</span>Warna</button>
+    </div>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()"><span>⏏</span>Keluar</button>
+    </div>
+  </div>
+
+  <div class="main">
+
+    <div class="publish-bar" id="publish-bar" style="display:none">
+      <div class="publish-info">Ada perubahan belum dipublish. <strong>Simpan ke GitHub sekarang?</strong></div>
+      <button class="btn btn-success" onclick="publishToGitHub()">🚀 Publish ke GitHub</button>
+    </div>
+
+    <div class="warn-box" id="warn-box">
+      <strong>⚠️ Perhatian:</strong> Data di browser ini mungkin tidak sinkron dengan GitHub. Disarankan klik <strong>Muat Ulang dari GitHub</strong> sebelum mengedit.
+      <br><button class="btn btn-ghost btn-sm" style="margin-top:10px" onclick="forceReloadFromGitHub()">🔄 Muat Ulang dari GitHub</button>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="section-tab active" id="tab-dashboard">
+      <div class="page-head">
+        <h1 class="page-title">Dashboard</h1>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost" onclick="forceReloadFromGitHub()">🔄 Sync dari GitHub</button>
+          <button class="btn btn-success" onclick="publishToGitHub()">🚀 Publish ke GitHub</button>
+        </div>
+      </div>
+      <div class="stats-grid" id="stats-grid"></div>
+      <div class="info-box">
+        <strong>🔒 Token Aman di Server</strong><br>
+        GitHub Token tersimpan di Vercel Environment Variables. Login dari HP, laptop, atau browser berbeda tetap bisa publish.
+      </div>
+      <div class="info-box" style="background:rgba(184,255,0,.05);border-color:rgba(184,255,0,.2);">
+        <strong style="color:var(--lime)">✅ Key galleryprompt sudah konsisten</strong><br>
+        Data gallery sekarang menggunakan key <code>galleryprompt</code> di semua halaman.
+      </div>
+    </div>
+
+    <!-- PROFILE -->
+    <div class="section-tab" id="tab-profile">
+      <div class="page-head">
+        <h1 class="page-title">Profil</h1>
+        <button class="btn btn-primary" onclick="saveProfile()">Simpan Profil</button>
+      </div>
+      <div class="profile-grid" style="background:rgba(255,255,255,.03);border:1.5px solid rgba(255,255,255,.06);border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div><label class="field-label">Nama</label><input type="text" class="field-input" id="p-name"/></div>
+        <div><label class="field-label">Tagline / Role</label><input type="text" class="field-input" id="p-tagline"/></div>
+        <div style="grid-column:1/-1"><label class="field-label">Bio</label><textarea class="field-input" id="p-bio" rows="3"></textarea></div>
+        <div><label class="field-label">Email</label><input type="email" class="field-input" id="p-email"/></div>
+        <div><label class="field-label">Lokasi</label><input type="text" class="field-input" id="p-location"/></div>
+        <div><label class="field-label">Instagram URL</label><input type="url" class="field-input" id="p-instagram"/></div>
+        <div><label class="field-label">YouTube URL</label><input type="url" class="field-input" id="p-youtube"/></div>
+        <div><label class="field-label">TikTok URL</label><input type="url" class="field-input" id="p-tiktok"/></div>
+        <div><label class="field-label">Behance URL</label><input type="url" class="field-input" id="p-behance"/></div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section-tab" id="tab-projects">
+      <div class="page-head">
+        <h1 class="page-title">Projects</h1>
+        <button class="btn btn-primary" onclick="openModal('project')">+ Tambah Project</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Judul</th><th>Kategori</th><th>Tahun</th><th>Progress</th><th>Featured</th><th>Aksi</th></tr></thead>
+          <tbody id="projects-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GALLERY -->
+    <div class="section-tab" id="tab-galleryprompt">
+      <div class="page-head">
+        <h1 class="page-title">Gallery Prompt</h1>
+        <button class="btn btn-primary" onclick="openModal('galleryprompt')">+ Tambah Item</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Judul</th><th>Kategori</th><th>Prompt</th><th>Aksi</th></tr></thead>
+          <tbody id="galleryprompt-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+    <div class="section-tab" id="tab-services">
+      <div class="page-head">
+        <h1 class="page-title">Services</h1>
+        <button class="btn btn-primary" onclick="openModal('service')">+ Tambah Service</button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Icon</th><th>Judul</th><th>Deskripsi</th><th>Label</th><th>Aksi</th></tr></thead>
+          <tbody id="services-table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WARNA -->
+    <div class="section-tab" id="tab-colors">
+      <div class="page-head">
+        <h1 class="page-title">Tema Warna</h1>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn btn-ghost" onclick="resetColors()">↺ Reset Default</button>
+          <button class="btn btn-success" onclick="saveColors()">✓ Terapkan</button>
+        </div>
+      </div>
+
+      <!-- Live Preview -->
+      <div class="theme-preview">
+        <div class="theme-preview-title">Live Preview</div>
+        <div class="preview-site" id="color-preview">
+          <div class="preview-header" id="pv-header">
+            <div class="preview-dot" id="pv-dot"></div>
+            <div class="preview-title-text" id="pv-logo">Iky Shinicy</div>
+          </div>
+          <div class="preview-hero" id="pv-hero">
+            <div class="preview-h1" id="pv-h1">PROMPT<br><span id="pv-accent">ASSETS</span></div>
+            <div class="preview-sub" id="pv-sub">Content creator spesialis AI visual</div>
+            <div class="preview-btn" id="pv-btn">Lihat Projects →</div>
+          </div>
+          <div class="preview-section" id="pv-section">
+            <div class="preview-label" id="pv-section-label">SERVICES</div>
+            <div class="preview-cards">
+              <div class="preview-card" id="pv-card1">
+                <div class="preview-card-title">Prompt Pack</div>
+                <div class="preview-card-chip" id="pv-chip1">Order</div>
+              </div>
+              <div class="preview-card" id="pv-card2">
+                <div class="preview-card-title">AI Visual</div>
+                <div class="preview-card-chip" id="pv-chip2">Info</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Color Pickers -->
+      <div class="color-grid" id="color-grid"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title" id="modal-title">Tambah</div>
+      <button class="modal-close" onclick="closeModal()">×</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal()">Batal</button>
+      <button class="btn btn-primary" id="modal-save-btn">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+const R2_WORKER_URL = 'https://r2-upload-proxy.rranzabussines.workers.dev';
+const PASS_HASH = '484728c4e7ad15ba197d3eda8934e3707fb9488115de9d1a4a0f0b50cf676f18';
+const GITHUB_TOKEN = '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'
+
+// ============ AUTH ============
+async function doLogin() {
+  const input = document.getElementById('login-pass').value;
+  const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input));
+  const hexHash = [...new Uint8Array(hash)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  if (hexHash === PASS_HASH) {
+    document.getElementById('login-screen').style.display = 'none';
+    initApp();
+  } else {
+    document.getElementById('login-err').style.display = 'block';
+  }
+}
+function doLogout() { location.reload(); }
+
+// ============ DATA ============
+let data = null;
+let hasChanges = false;
+
+function getDefaultData() {
+  return {
+    profile: { name:'Iky Shinicy', tagline:'Prompt Assets Creator', bio:'Content creator spesialis AI visual, prompt assets, dan identitas digital.', email:'hello@ikyshinicy.com', instagram:'', youtube:'', tiktok:'', behance:'', location:'Indonesia' },
+    services: [], projects: [], galleryprompt: []
+  };
+}
+
+async function fetchDataFromGitHub() {
+  const cacheBust = '?t=' + Date.now();
+  const urls = ['../data.js' + cacheBust, './data.js' + cacheBust, '/data.js' + cacheBust];
+  for (const url of urls) {
+    try {
+      const res = await fetch(url, { cache: 'no-store' });
+      if (!res.ok) continue;
+      const text = await res.text();
+      const match = text.match(/const SITE_DATA\s*=\s*(\{[\s\S]*?\});\s*(?:if|$)/);
+      if (match) {
+        const parsed = JSON.parse(match[1]);
+        if (!parsed.projects) parsed.projects = [];
+        if (!parsed.galleryprompt) {
+          parsed.galleryprompt = parsed['gallery prompt'] || parsed['gallery'] || [];
+          delete parsed['gallery prompt'];
+          delete parsed['gallery'];
+        }
+        if (!parsed.services) parsed.services = [];
+        if (!parsed.profile) parsed.profile = getDefaultData().profile;
+        return parsed;
+      }
+    } catch(e) { continue; }
+  }
+  return null;
+}
+
+async function initApp() {
+  document.getElementById('loading-screen').style.display = 'flex';
+  document.getElementById('loading-text').textContent = 'Memuat data terbaru dari server...';
+  const githubData = await fetchDataFromGitHub();
+  if (githubData) {
+    data = githubData;
+    localStorage.setItem('iky_data', JSON.stringify(data));
+    localStorage.setItem('iky_data_timestamp', Date.now().toString());
+  } else {
+    const saved = localStorage.getItem('iky_data');
+    if (saved) {
+      try {
+        data = JSON.parse(saved);
+        if (!data.galleryprompt) {
+          data.galleryprompt = data['gallery prompt'] || data['gallery'] || [];
+          delete data['gallery prompt'];
+          delete data['gallery'];
+        }
+        document.getElementById('warn-box').style.display = 'block';
+        toast('Tidak bisa terhubung ke server. Menggunakan data lokal.', 'info');
+      } catch(e) { data = getDefaultData(); }
+    } else {
+      data = getDefaultData();
+    }
+  }
+  document.getElementById('loading-screen').style.display = 'none';
+  document.getElementById('app').style.display = 'flex';
+  renderAll();
+}
+
+async function forceReloadFromGitHub() {
+  if (hasChanges) {
+    if (!confirm('Kamu punya perubahan yang belum dipublish. Muat ulang dari GitHub akan menghapus perubahan tersebut. Lanjutkan?')) return;
+  }
+  document.getElementById('loading-screen').style.display = 'flex';
+  document.getElementById('loading-text').textContent = 'Memuat ulang data dari GitHub...';
+  const githubData = await fetchDataFromGitHub();
+  document.getElementById('loading-screen').style.display = 'none';
+  if (githubData) {
+    data = githubData;
+    localStorage.setItem('iky_data', JSON.stringify(data));
+    localStorage.setItem('iky_data_timestamp', Date.now().toString());
+    hasChanges = false;
+    document.getElementById('publish-bar').style.display = 'none';
+    document.getElementById('warn-box').style.display = 'none';
+    renderAll();
+    toast('Data berhasil dimuat ulang dari GitHub!', 'success');
+  } else {
+    toast('Gagal terhubung ke server. Coba lagi.', 'error');
+  }
+}
+
+function saveLocal() {
+  if (!data.projects) data.projects = [];
+  if (!data.galleryprompt) data.galleryprompt = [];
+  if (!data.services) data.services = [];
+  if (!data.profile) data.profile = getDefaultData().profile;
+  localStorage.setItem('iky_data', JSON.stringify(data));
+  hasChanges = true;
+  document.getElementById('publish-bar').style.display = 'flex';
+}
+
+function markSaved() {
+  hasChanges = false;
+  document.getElementById('publish-bar').style.display = 'none';
+  localStorage.setItem('iky_data', JSON.stringify(data));
+  localStorage.setItem('iky_data_timestamp', Date.now().toString());
+}
+
+// ============ TABS ============
+function showTab(name, btn) {
+  document.querySelectorAll('.section-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  btn.classList.add('active');
+  if (name === 'colors') renderColorGrid();
+}
+
+// ============ RENDERS ============
+function renderAll() {
+  if (!data) return;
+  renderDashboard();
+  renderProfile();
+  renderProjectsTable();
+  renderGalleryTable();
+  renderServicesTable();
+}
+
+function renderDashboard() {
+  document.getElementById('stats-grid').innerHTML = [
+    { num: data.projects.length, label: 'Projects' },
+    { num: data.galleryprompt.length, label: 'Gallery Items' },
+    { num: data.services.length, label: 'Services' },
+    { num: data.projects.filter(p => p.featured).length, label: 'Featured' }
+  ].map(s => `<div class="stat-card"><div class="stat-num">${s.num}</div><div class="stat-label">${s.label}</div></div>`).join('');
+}
+
+function renderProfile() {
+  const p = data.profile;
+  ['name','tagline','bio','email','location','instagram','youtube','tiktok','behance'].forEach(k => {
+    const el = document.getElementById('p-' + k);
+    if (el) el.value = p[k] || '';
+  });
+}
+
+function renderProjectsTable() {
+  document.getElementById('projects-table').innerHTML = data.projects.length === 0
+    ? '<tr><td colspan="6" style="text-align:center;color:rgba(255,255,255,.3);padding:32px">Belum ada project.</td></tr>'
+    : data.projects.map((p, i) => `
+      <tr>
+        <td style="font-weight:500">
+          <div style="display:flex;align-items:center;gap:10px;">
+            ${p.image ? `<img src="${p.image}" style="width:36px;height:36px;object-fit:cover;border-radius:6px;flex-shrink:0"/>` : ''}
+            ${p.title}
+          </div>
+        </td>
+        <td><span style="font-size:12px;color:var(--sky)">${p.category}</span></td>
+        <td>${p.year}</td>
+        <td>
+          ${p.progress ? `
+          <div style="display:flex;align-items:center;gap:8px;">
+            <div style="width:60px;height:4px;background:rgba(255,255,255,.08);border-radius:999px;overflow:hidden;">
+              <div style="height:100%;width:${p.progress}%;background:linear-gradient(90deg,var(--sky),var(--lime));border-radius:999px;"></div>
+            </div>
+            <span style="font-family:'Syne',sans-serif;font-weight:800;font-size:12px;color:var(--lime)">${p.progress}%</span>
+          </div>` : '<span style="color:rgba(255,255,255,.2)">—</span>'}
+        </td>
+        <td>${p.featured ? '<span class="badge badge-featured">Featured</span>' : '—'}</td>
+        <td>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost btn-sm" onclick="editProject(${i},event)">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteItem('projects',${i})">Hapus</button>
+          </div>
+        </td>
+      </tr>`).join('');
+}
+
+function renderGalleryTable() {
+  document.getElementById('galleryprompt-table').innerHTML = data.galleryprompt.length === 0
+    ? '<tr><td colspan="4" style="text-align:center;color:rgba(255,255,255,.3);padding:32px">Belum ada item gallery.</td></tr>'
+    : data.galleryprompt.map((g, i) => `
+      <tr>
+        <td style="font-weight:500">
+          <div style="display:flex;align-items:center;gap:10px;">
+            ${g.image ? `<img src="${g.image}" style="width:36px;height:36px;object-fit:cover;border-radius:6px;flex-shrink:0"/>` : ''}
+            ${g.title}
+          </div>
+        </td>
+        <td><span style="font-size:12px;color:var(--sky)">${g.category}</span></td>
+        <td style="font-family:monospace;font-size:12px;color:rgba(255,255,255,.4);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${g.prompt || '—'}</td>
+        <td>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost btn-sm" onclick="editGallery(${i},event)">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteItem('galleryprompt',${i})">Hapus</button>
+          </div>
+        </td>
+      </tr>`).join('');
+}
+
+function renderServicesTable() {
+  document.getElementById('services-table').innerHTML = data.services.length === 0
+    ? '<tr><td colspan="5" style="text-align:center;color:rgba(255,255,255,.3);padding:32px">Belum ada service.</td></tr>'
+    : data.services.map((s, i) => `
+      <tr>
+        <td style="font-size:20px">${s.icon}</td>
+        <td style="font-weight:500">${s.title}</td>
+        <td style="font-size:13px;color:rgba(255,255,255,.5);max-width:220px">${s.desc}</td>
+        <td><span style="font-size:12px;padding:3px 10px;background:rgba(255,255,255,.06);border-radius:999px">${s.label}</span></td>
+        <td>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost btn-sm" onclick="editService(${i},event)">Edit</button>
+            <button class="btn btn-danger btn-sm" onclick="deleteItem('services',${i})">Hapus</button>
+          </div>
+        </td>
+      </tr>`).join('');
+}
+
+// ============ GITHUB IMAGE UPLOAD + AUTO COMPRESS ============
+
+// Compress gambar via Canvas sebelum upload
+async function compressImage(file, maxWidth = 1200, quality = 0.82) {
+  return new Promise((resolve) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        let w = img.width, h = img.height;
+        if (w > maxWidth) { h = Math.round(h * maxWidth / w); w = maxWidth; }
+        canvas.width = w; canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        canvas.toBlob(blob => resolve(blob), 'image/webp', quality);
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function uploadToR2(file, inputId, previewId, progressId, statusId) {
+  const statusEl = document.getElementById(statusId);
+  const progressEl = document.getElementById(progressId);
+  const progressBar = progressEl?.querySelector('.img-upload-progress-bar');
+  const previewEl = document.getElementById(previewId);
+  if (statusEl) { statusEl.textContent = '⏳ Mengkompresi...'; statusEl.className = 'img-upload-status uploading'; }
+  if (progressEl) progressEl.classList.add('show');
+
+  try {
+    let progress = 0;
+    const interval = setInterval(() => { progress = Math.min(progress + 15, 85); if (progressBar) progressBar.style.width = progress + '%'; }, 200);
+
+    // Auto compress + convert ke WebP
+    const compressed = await compressImage(file);
+    const originalKB = Math.round(file.size / 1024);
+    const compressedKB = Math.round(compressed.size / 1024);
+    console.log(`Compress: ${originalKB}KB → ${compressedKB}KB (hemat ${originalKB - compressedKB}KB)`);
+
+    if (statusEl) statusEl.textContent = '⏳ Mengupload ke R2...';
+
+    // Upload ke Cloudflare R2 via Worker
+    const filename = file.name.replace(/\.[^.]+$/, '') + '-' + Date.now() + '.webp';
+    const formData = new FormData();
+    formData.append('file', compressed, filename);
+    formData.append('filename', filename);
+
+    const r2Res = await fetch(R2_WORKER_URL, {
+      method: 'POST',
+      body: formData
+    });
+
+    clearInterval(interval);
+    if (progressBar) progressBar.style.width = '100%';
+    if (!r2Res.ok) {
+      const err = await r2Res.json();
+      throw new Error(err.error || 'Upload gagal');
+    }
+
+    const r2Data = await r2Res.json();
+    const url = r2Data.url;
+
+    const inputEl = document.getElementById(inputId);
+    if (inputEl) inputEl.value = url;
+    if (previewEl) { previewEl.src = url; previewEl.classList.add('show'); }
+    if (statusEl) { statusEl.textContent = `✓ Upload berhasil! (${compressedKB}KB)`; statusEl.className = 'img-upload-status done'; }
+    setTimeout(() => { if (progressEl) progressEl.classList.remove('show'); }, 1000);
+    toast(`Gambar berhasil diupload ke R2! ${originalKB}KB → ${compressedKB}KB`, 'success');
+    return url;
+  } catch(err) {
+    if (statusEl) { statusEl.textContent = '✗ Upload gagal.'; statusEl.className = 'img-upload-status err'; }
+    if (progressEl) progressEl.classList.remove('show');
+    toast('Upload gagal: ' + err.message, 'error');
+    return null;
+  }
+}
+
+function imageUploadField(inputId, label, currentUrl) {
+  const previewId = inputId + '-preview';
+  const progressId = inputId + '-progress';
+  const statusId = inputId + '-status';
+  return `
+    <div class="img-upload-wrap">
+      <label class="field-label">${label}</label>
+      ${currentUrl ? `<img id="${previewId}" class="img-preview show" src="${currentUrl}"/>` : `<img id="${previewId}" class="img-preview"/>`}
+      <input type="file" accept="image/*" id="${inputId}-file" style="display:none" onchange="handleFileSelect(this,'${inputId}','${previewId}','${progressId}','${statusId}')"/>
+      <div class="img-upload-area"
+        ondragover="event.preventDefault();this.classList.add('dragover')"
+        ondragleave="this.classList.remove('dragover')"
+        ondrop="handleDrop(event,'${inputId}','${previewId}','${progressId}','${statusId}');this.classList.remove('dragover')"
+        onclick="event.stopPropagation();document.getElementById('${inputId}-file').click()">
+        <div class="img-upload-icon">🖼</div>
+        <div class="img-upload-text"><strong>Klik pilih</strong> atau drag & drop</div>
+      </div>
+      <div class="img-upload-progress" id="${progressId}"><div class="img-upload-progress-bar"></div></div>
+      <span class="img-upload-status" id="${statusId}">${currentUrl ? '✓ Sudah ada gambar' : 'Belum ada gambar'}</span>
+      <div>
+        <label class="field-label" style="margin-top:4px">Atau isi URL manual</label>
+        <input type="url" class="field-input" id="${inputId}" value="${currentUrl||''}" placeholder="https://..." oninput="handleUrlInput(this,'${previewId}')"/>
+      </div>
+    </div>`;
+}
+
+function progressField(currentVal) {
+  const val = currentVal || 0;
+  return `
+    <div class="progress-field">
+      <label class="field-label">Progress (0–100%) <span class="progress-val" id="pj-progress-val">${val}%</span></label>
+      <input type="range" class="progress-slider" id="pj-progress" min="0" max="100" value="${val}"
+        oninput="document.getElementById('pj-progress-val').textContent=this.value+'%';document.getElementById('pj-progress-bar').style.width=this.value+'%'"/>
+      <div class="progress-preview"><div class="progress-preview-fill" id="pj-progress-bar" style="width:${val}%"></div></div>
+      <span style="font-size:11px;color:rgba(255,255,255,.3)">Kosongkan (set 0) jika tidak ingin tampilkan progress bar</span>
+    </div>`;
+}
+
+function handleFileSelect(input, inputId, previewId, progressId, statusId) {
+  const file = input.files[0];
+  if (file) { input.value = ''; uploadToR2(file, inputId, previewId, progressId, statusId); }
+}
+function handleDrop(event, inputId, previewId, progressId, statusId) {
+  event.preventDefault();
+  const file = event.dataTransfer.files[0];
+  if (!file || !file.type.startsWith('image/')) { toast('File harus berupa gambar','error'); return; }
+  uploadToR2(file, inputId, previewId, progressId, statusId);
+}
+function handleUrlInput(input, previewId) {
+  const preview = document.getElementById(previewId);
+  if (!preview) return;
+  if (input.value) { preview.src = input.value; preview.classList.add('show'); }
+  else preview.classList.remove('show');
+}
+
+// ============ MODAL ============
+let modalType = null, modalIndex = -1;
+
+function openModal(type, index) {
+  index = (index === undefined) ? -1 : index;
+  modalType = type;
+  modalIndex = index;
+  const isEdit = index >= 0;
+  document.getElementById('modal-title').textContent = (isEdit ? 'Edit ' : 'Tambah ') + (type==='project'?'Project':type==='galleryprompt'?'Gallery Prompt':'Service');
+
+  if (type === 'project') {
+    const p = isEdit ? data.projects[index] : {};
+    document.getElementById('modal-body').innerHTML =
+      sf('text','pj-title','Judul',p.title,'') +
+      `<div><label class="field-label">Kategori</label>
+      <select class="field-input" id="pj-cat">
+        <option value="Website Building" ${p.category==='Website Building'?'selected':''}>Website Building</option>
+        <option value="Prompt Assets" ${p.category==='Prompt Assets'?'selected':''}>Prompt Assets</option>
+        <option value="Product Digital" ${p.category==='Product Digital'?'selected':''}>Product Digital</option>
+        <option value="AI Music Studio" ${p.category==='AI Music Studio'?'selected':''}>AI Music Studio</option>
+        <option value="other" ${p.category&&!['Website Building','Prompt Assets','Product Digital','AI Music Studio'].includes(p.category)?'selected':''}>Lainnya...</option>
+      </select>
+      <input type="text" class="field-input" id="pj-cat-custom" placeholder="Ketik kategori baru..." value="${p.category&&!['Website Building','Prompt Assets','Product Digital','AI Music Studio'].includes(p.category)?p.category:''}" style="margin-top:8px;display:${p.category&&!['Website Building','Prompt Assets','Product Digital','AI Music Studio'].includes(p.category)?'block':'none'}"/>
+      </div>` +
+      sf('text','pj-year','Tahun',p.year||new Date().getFullYear(),'') +
+      sf('textarea','pj-desc','Deskripsi',p.desc,'') +
+      imageUploadField('pj-image','Gambar Project',p.image) +
+      `<div id="pj-link-wrap" style="display:${p.link && p.link !== '#' ? 'block' : 'none'}">
+        <label class="field-label">Link Website / Produk</label>
+        <input type="url" class="field-input" id="pj-link" value="${p.link && p.link !== '#' ? p.link : ''}" placeholder="https://..."/>
+      </div>` +
+      progressField(p.progress) +
+      `<label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7)">
+        <input type="checkbox" id="pj-featured" ${p.featured?'checked':''} style="width:16px;height:16px;accent-color:var(--sky)"/>
+        Tampilkan sebagai Featured
+      </label>`;
+  } else if (type === 'galleryprompt') {
+    const g = isEdit ? data.galleryprompt[index] : {};
+    document.getElementById('modal-body').innerHTML =
+      sf('text','gl-title','Judul',g.title,'') +
+      sf('text','gl-cat','Kategori / Tool AI',g.category,'contoh: Midjourney') +
+      sf('textarea','gl-prompt','Prompt',g.prompt,'') +
+      imageUploadField('gl-image','Gambar Gallery',g.image) +
+      sf('url','gl-link','Link',g.link,'https://...');
+  } else if (type === 'service') {
+    const s = isEdit ? data.services[index] : {};
+    document.getElementById('modal-body').innerHTML =
+      sf('text','sv-icon','Icon (emoji)',s.icon,'📦') +
+      sf('text','sv-title','Judul',s.title,'') +
+      sf('textarea','sv-desc','Deskripsi',s.desc,'') +
+      sf('text','sv-label','Label Tombol',s.label,'Info');
+  }
+
+  document.getElementById('modal-save-btn').onclick = saveModal;
+  document.getElementById('modal-overlay').classList.add('open');
+  if (type === 'project') {
+    const catSelect = document.getElementById('pj-cat');
+    if (catSelect) {
+      catSelect.onchange = function() {
+        const linkField = document.getElementById('pj-link-wrap');
+        const custom = document.getElementById('pj-cat-custom');
+        linkField.style.display = 'block';
+        custom.style.display = this.value === 'other' ? 'block' : 'none';
+        if (this.value !== 'other') custom.value = '';
+      };
+    }
+  }
+}
+
+function sf(type, id, label, val, ph) {
+  if (type==='textarea') return `<div><label class="field-label">${label}</label><textarea class="field-input" id="${id}" rows="3" placeholder="${ph||''}">${val||''}</textarea></div>`;
+  return `<div><label class="field-label">${label}</label><input type="${type}" class="field-input" id="${id}" value="${val||''}" placeholder="${ph||''}"/></div>`;
+}
+
+function saveModal() {
+  const isEdit = modalIndex >= 0;
+  if (modalType === 'project') {
+    const progressVal = parseInt(document.getElementById('pj-progress')?.value || 0);
+    const obj = {
+      id: isEdit ? data.projects[modalIndex].id : 'p'+Date.now(),
+      title: v('pj-title'),
+      category: (()=>{ const c=document.getElementById('pj-cat').value; return c==='other'?v('pj-cat-custom'):c; })(),
+      year: v('pj-year'),
+      desc: v('pj-desc'),
+      image: v('pj-image'),
+      link: v('pj-link') || '#',
+      progress: progressVal > 0 ? progressVal : null,
+      featured: document.getElementById('pj-featured').checked
+    };
+    if (!obj.title) { toast('Judul harus diisi','error'); return; }
+    isEdit ? data.projects[modalIndex]=obj : data.projects.push(obj);
+    saveLocal(); renderProjectsTable(); renderDashboard();
+  } else if (modalType === 'galleryprompt') {
+    const obj = { id:isEdit?data.galleryprompt[modalIndex].id:'g'+Date.now(), title:v('gl-title'), category:v('gl-cat'), prompt:v('gl-prompt'), image:v('gl-image'), link:v('gl-link')||'#' };
+    if (!obj.title) { toast('Judul harus diisi','error'); return; }
+    isEdit ? data.galleryprompt[modalIndex]=obj : data.galleryprompt.push(obj);
+    saveLocal(); renderGalleryTable(); renderDashboard();
+  } else if (modalType === 'service') {
+    const obj = { id:isEdit?data.services[modalIndex].id:'s'+Date.now(), icon:v('sv-icon')||'📦', title:v('sv-title'), desc:v('sv-desc'), label:v('sv-label')||'Info' };
+    if (!obj.title) { toast('Judul harus diisi','error'); return; }
+    isEdit ? data.services[modalIndex]=obj : data.services.push(obj);
+    saveLocal(); renderServicesTable(); renderDashboard();
+  }
+  closeModal();
+  toast('Tersimpan! Klik Publish untuk update website.','success');
+}
+
+function v(id) { return (document.getElementById(id)?.value||'').trim(); }
+function editProject(i,e) { if(e)e.stopPropagation(); openModal('project',i); }
+function editGallery(i,e) { if(e)e.stopPropagation(); openModal('galleryprompt',i); }
+function editService(i,e) { if(e)e.stopPropagation(); openModal('service',i); }
+
+function deleteItem(type, i) {
+  if (!confirm('Hapus item ini?')) return;
+  data[type].splice(i,1);
+  saveLocal();
+  if (type==='projects') renderProjectsTable();
+  if (type==='galleryprompt') renderGalleryTable();
+  if (type==='services') renderServicesTable();
+  renderDashboard();
+  toast('Item dihapus.','info');
+}
+
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); }
+
+// Close modal only when clicking directly on overlay background
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+// ============ PROFILE ============
+function saveProfile() {
+  ['name','tagline','bio','email','location','instagram','youtube','tiktok','behance'].forEach(k => {
+    const el = document.getElementById('p-'+k);
+    if (el) data.profile[k] = el.value.trim();
+  });
+  saveLocal();
+  toast('Profil disimpan! Klik Publish untuk update website.','success');
+}
+
+// ============ PUBLISH ============
+async function publishToGitHub() {
+  if (!data.projects) data.projects = [];
+  if (!data.galleryprompt) data.galleryprompt = [];
+  if (!data.services) data.services = [];
+  const btns = document.querySelectorAll('.btn-success');
+  btns.forEach(b => { b.textContent = '⏳ Mengirim...'; b.disabled = true; });
+  try {
+    // Ambil SHA file data.js yang ada dulu
+    const shaRes = await fetch('https://api.github.com/repos/ikyshinicy/rizkyreranza/contents/data.js', {
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
+    });
+    const shaData = await shaRes.json();
+    const sha = shaData.sha;
+
+    // Encode content ke base64
+    const content = generateDataJs();
+    const encoded = btoa(unescape(encodeURIComponent(content)));
+
+    // Update data.js di GitHub
+    const res = await fetch('https://api.github.com/repos/ikyshinicy/rizkyreranza/contents/data.js', {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      },
+      body: JSON.stringify({
+        message: 'Update data.js via Admin Panel',
+        content: encoded,
+        sha: sha
+      })
+    });
+
+    if (res.ok) {
+      toast('🚀 Berhasil publish! Website update dalam ~30 detik.', 'success');
+      markSaved();
+    } else {
+      const err = await res.json();
+      toast('Gagal: ' + (err.message || 'Unknown error'), 'error');
+    }
+  } catch(e) {
+    toast('Error: ' + e.message, 'error');
+  }
+  btns.forEach(b => { b.textContent = '🚀 Publish ke GitHub'; b.disabled = false; });
+}
+
+function generateDataJs() {
+  return `// ============================================================
+// DATA.JS — Sumber data utama website Iky Shinicy
+// Diupdate otomatis via Admin Panel — ${new Date().toLocaleString('id-ID')}
+// ============================================================
+
+const SITE_DATA = ${JSON.stringify(data, null, 2)};
+
+if (typeof module !== 'undefined') module.exports = SITE_DATA;
+`;
+}
+
+// ============ COLORS ============
+const COLOR_VARS = [
+  { key: '--paper', name: 'Background', desc: 'Warna dasar halaman', default: '#F7F1E8',
+  presets: [
+    // Hitam & Putih
+    '#FFFFFF','#000000',
+    // Aesthetic
+    '#F7F1E8','#F5F0FF','#E8F4F8','#FFF0F5','#F0FFF4',
+    // Mejikuhibinu
+    '#FF0000','#FF7F00','#FFFF00','#00CC00','#0000FF','#4B0082','#8B00FF',
+    // Normal
+    '#FF6B6B','#FFA94D','#FFD43B','#69DB7C','#4DABF7','#748FFC','#DA77F2',
+    '#F8F9FA','#E9ECEF','#DEE2E6'
+    ]},
+  { key: '--sky', name: 'Aksen Biru', desc: 'Teks aksen & section bawah', default: '#08A8F5',
+    presets: [
+      '#08A8F5','#0EA5E9','#3B82F6','#6366F1','#8B5CF6','#A855F7','#EC4899',
+      '#F43F5E','#EF4444','#F97316','#EAB308','#22C55E','#10B981','#14B8A6',
+      '#06B6D4','#00C2FF','#FF6B6B','#FF9F43','#FD79A8','#6C5CE7'
+    ]},
+  { key: '--lime', name: 'Hijau / Badge', desc: 'Lingkaran logo & badge', default: '#B8FF00',
+    presets: [
+      '#B8FF00','#A3E635','#84CC16','#22C55E','#10B981','#34D399','#00FF88',
+      '#00FFCC','#FFD21A','#FBBF24','#FB923C','#F87171','#C084FC','#A78BFA',
+      '#60A5FA','#38BDF8','#FF6B6B','#FF9F43','#FD79A8','#FFFFFF'
+    ]},
+  { key: '--yellow', name: 'Kuning Services', desc: 'Background section services', default: '#FFD21A',
+    presets: [
+      '#FFD21A','#FCD34D','#FDE68A','#FEF08A','#BEF264','#A3E635','#6EE7B7',
+      '#BAE6FD','#C4B5FD','#F5D0FE','#FECDD3','#FED7AA','#FB923C','#F472B6',
+      '#E879F9','#38BDF8','#4ADE80','#FACC15','#FF6B6B','#FFF1F2'
+    ]},
+  { key: '--ink', name: 'Hitam / Teks', desc: 'Teks utama & border', default: '#090909',
+    presets: [
+      '#FFFFFF','#090909','#111111','#1A1A1A','#212121','#2D2D2D','#0F172A','#1E293B',
+      '#1A1A2E','#16213E','#0F3460','#1C1917','#18181B','#1F1F1F','#111827',
+      '#1F2937','#374151','#4B2C2C','#2D1B69','#1A2744'
+    ]},
+];
+
+let currentColors = {};
+
+function loadCurrentColors() {
+  try {
+    const saved = localStorage.getItem('siteColors');
+    if (saved) currentColors = JSON.parse(saved);
+    else COLOR_VARS.forEach(c => { currentColors[c.key] = c.default; });
+  } catch(e) {
+    COLOR_VARS.forEach(c => { currentColors[c.key] = c.default; });
+  }
+}
+
+function renderColorGrid() {
+  loadCurrentColors();
+  const grid = document.getElementById('color-grid');
+  grid.innerHTML = COLOR_VARS.map(c => `
+    <div class="color-card">
+      <div class="color-card-label">${c.desc}</div>
+      <div class="color-card-name">${c.name}</div>
+      <div class="color-swatch-wrap">
+        <input type="color" class="color-swatch" id="swatch-${c.key.replace('--','')}"
+          value="${currentColors[c.key] || c.default}"
+          oninput="onColorChange('${c.key}', this.value)">
+        <span class="color-hex" id="hex-${c.key.replace('--','')}">${currentColors[c.key] || c.default}</span>
+      </div>
+      <div class="color-presets">
+        ${c.presets.map(p => `
+          <div class="color-preset" style="background:${p}" title="${p}"
+            onclick="onColorChange('${c.key}','${p}')"></div>
+        `).join('')}
+      </div>
+    </div>
+  `).join('');
+  updatePreview();
+}
+
+function onColorChange(key, val) {
+  currentColors[key] = val;
+  const id = key.replace('--','');
+  const swatch = document.getElementById('swatch-'+id);
+  const hex    = document.getElementById('hex-'+id);
+  if (swatch) swatch.value = val;
+  if (hex)    hex.textContent = val;
+  updatePreview();
+}
+
+function updatePreview() {
+  const p = currentColors['--paper']  || '#F7F1E8';
+  const s = currentColors['--sky']    || '#08A8F5';
+  const l = currentColors['--lime']   || '#B8FF00';
+  const y = currentColors['--yellow'] || '#FFD21A';
+  const k = currentColors['--ink']    || '#090909';
+
+  // header
+  document.getElementById('pv-header').style.background  = p;
+  document.getElementById('pv-header').style.borderColor = k;
+  document.getElementById('pv-dot').style.background     = l;
+  document.getElementById('pv-dot').style.borderColor    = k;
+  document.getElementById('pv-dot').style.boxShadow      = `2px 2px 0 ${k}`;
+  document.getElementById('pv-logo').style.color         = k;
+  // hero
+  document.getElementById('pv-hero').style.background = p;
+  document.getElementById('pv-h1').style.color        = k;
+  document.getElementById('pv-accent').style.color    = s;
+  document.getElementById('pv-sub').style.color       = k + '99';
+  document.getElementById('pv-btn').style.background  = k;
+  document.getElementById('pv-btn').style.color       = p;
+  document.getElementById('pv-btn').style.borderColor = k;
+  // section services
+  document.getElementById('pv-section').style.background  = y;
+  document.getElementById('pv-section').style.borderColor = k;
+  document.getElementById('pv-section-label').style.color = k + '88';
+  // chips
+  [document.getElementById('pv-chip1'), document.getElementById('pv-chip2')].forEach(el => {
+    if (el) { el.style.background = k; el.style.color = p; }
+  });
+}
+
+function saveColors() {
+  localStorage.setItem('siteColors', JSON.stringify(currentColors));
+  // Terapkan ke halaman admin juga (preview langsung)
+  COLOR_VARS.forEach(c => {
+    document.documentElement.style.setProperty(c.key, currentColors[c.key] || c.default);
+  });
+  toast('✅ Warna disimpan! Semua halaman web sudah berubah.', 'success');
+}
+
+function resetColors() {
+  if (!confirm('Reset ke warna default?')) return;
+  COLOR_VARS.forEach(c => { currentColors[c.key] = c.default; });
+  localStorage.removeItem('siteColors');
+  renderColorGrid();
+  toast('Warna direset ke default.', 'info');
+}
+
+function toast(msg, type='info') {
+  const el = document.createElement('div');
+  el.className = `toast-item ${type}`;
+  el.textContent = msg;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(() => el.remove(), 4000);
+}
+</script>
+</body>
+</html>

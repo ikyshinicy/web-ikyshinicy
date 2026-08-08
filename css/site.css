@@ -1,0 +1,84 @@
+/* ============================================================
+   site.css — Shared chrome for all inner pages
+   (header, nav, Contact Me, footer, brush accents)
+   Scoped to chrome only to avoid clashing with page sections.
+   ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&display=swap');
+
+:root {
+  --sky: #08A8F5; --blue: #1B6EF3; --lime: #B8FF00; --ink: #0E0E0E;
+  --paper: #F7F1E8; --purple: #6B4EE6; --orange: #F97316; --muted: #6b6560; --white:#fff;
+  --site-maxw: 1160px;
+}
+
+/* ---- Header ---- */
+header {
+  position: fixed !important; z-index: 1000; top: 0; left: 0; right: 0;
+  display: flex !important; align-items: center; justify-content: space-between;
+  padding: 14px max(24px, calc(50% - var(--site-maxw)/2)) !important;
+  background: rgba(247,241,232,.82) !important; backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(14,14,14,.08) !important;
+}
+header .logo {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 21px; letter-spacing: -.5px;
+  display: flex; align-items: center; gap: 11px; color: var(--ink) !important;
+}
+header .logo-dot {
+  display: inline-flex !important; align-items: center; justify-content: center;
+  background: var(--lime) !important; border: none !important; border-radius: 50%;
+  width: 34px !important; height: 34px !important; box-shadow: 0 4px 12px rgba(120,180,0,.35) !important;
+  transition: transform .18s;
+}
+header .logo-dot:hover { transform: scale(1.08) rotate(-6deg); }
+header nav { display: flex; gap: 4px; align-items: center; }
+header nav a {
+  font-size: 14px !important; font-weight: 500 !important; padding: 8px 15px !important;
+  border-radius: 999px !important; border: none !important; color: #2a2a2a !important;
+  transition: color .2s, background .2s; position: relative; background: transparent !important;
+}
+header nav a:hover { background: rgba(14,14,14,.05) !important; color: var(--ink) !important; }
+header nav a.active { color: var(--ink) !important; font-weight: 700 !important; }
+header nav a.active::after {
+  content: ''; position: absolute; left: 15px; right: 15px; bottom: 2px; height: 3px;
+  background: var(--lime); border-radius: 999px;
+}
+header .nav-cta {
+  display: inline-flex !important; align-items: center; gap: 7px;
+  background: var(--ink) !important; color: var(--white) !important; font-weight: 600 !important;
+  font-size: 14px !important; padding: 11px 22px !important; border: none !important; border-radius: 999px !important;
+}
+header .nav-cta:hover { background: var(--blue) !important; color: var(--white) !important; }
+header .menu-btn span { background: var(--ink) !important; }
+
+/* ---- Brush accent for page titles ---- */
+.brush-word {
+  font-family: 'Caveat', cursive; font-weight: 700; display: inline-block;
+  line-height: .8; transform: rotate(-2deg); position: relative;
+}
+
+/* ---- Standardized footer ---- */
+.site-footer { background: var(--ink); color: var(--white); padding: 60px 24px 26px; position: relative; overflow: hidden; }
+.site-footer .sf-inner {
+  max-width: var(--site-maxw); margin: 0 auto;
+  display: grid; grid-template-columns: 1.6fr 1fr 1fr 1fr; gap: 32px;
+}
+.site-footer .sf-logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px; display: flex; align-items: center; gap: 10px; margin-bottom: 14px; color:#fff; }
+.site-footer .sf-logo .logo-dot { width: 34px; height: 34px; background: var(--lime); border-radius: 50%; display: inline-flex; align-items:center; justify-content:center; }
+.site-footer .sf-brand p { font-size: 14px; color: rgba(255,255,255,.55); line-height: 1.7; }
+.site-footer h4 { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; color:#fff; }
+.site-footer .sf-col a { display: block; font-size: 14px; color: rgba(255,255,255,.55); margin-bottom: 10px; transition: color .2s; }
+.site-footer .sf-col a:hover { color: var(--lime); }
+.site-footer .sf-social { display: flex; gap: 12px; }
+.site-footer .sf-social a {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px;
+  border: 1px solid rgba(255,255,255,.15); border-radius: 12px; color: rgba(255,255,255,.7); transition: all .2s;
+}
+.site-footer .sf-social a:hover { color: var(--ink); background: var(--lime); border-color: var(--lime); transform: translateY(-2px); }
+.site-footer .sf-support { max-width: var(--site-maxw); margin: 28px auto 0; }
+.site-footer .sf-bottom {
+  max-width: var(--site-maxw); margin: 18px auto 0; display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 8px; padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,.1); font-size: 12.5px; color: rgba(255,255,255,.4);
+}
+@media (max-width: 900px) { .site-footer .sf-inner { grid-template-columns: 1fr 1fr; gap: 28px; } }
+@media (max-width: 768px) { header nav { display: none; } header nav.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--paper); padding: 16px; gap: 4px; } header .menu-btn { display: flex !important; } }
