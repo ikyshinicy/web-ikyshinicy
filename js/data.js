@@ -1,6 +1,6 @@
 // ============================================================
 // DATA.JS — Sumber data utama website Iky Shinicy
-// Diupdate otomatis via Admin Panel — 7/6/2026, 04.51.12
+// Diupdate otomatis via Admin Panel — 17/8/2026, 15.29.07
 // ============================================================
 
 const SITE_DATA = {
@@ -241,7 +241,7 @@ const SITE_DATA = {
       "title": "Urban Cyber Sketch",
       "category": "Chatgpt",
       "prompt": "Full-body fashion editorial shot of a young man standing in a relaxed pose, one hand inside pocket, slightly slouched posture, staring directly at camera with effortless cool and confident expression.\nOutfit: oversized white graphic t-shirt with bold graffiti print (red and yellow accents), distressed ripped jeans, high-top sneakers with streetwear aesthetic.\nAccessories: yellow headphones slightly off one ear, thin glasses with subtle light reflections.\nOne arm is a stylized robotic prosthetic, designed in monochrome sketch style with bold black outlines, semi-illustrated look (not fully realistic), blending between mechanical detail and hand-drawn comic style.\nStyle: streetwear editorial + anime fusion, mix of photorealistic subject with illustrated elements, clean sharp outlines, subtle halftone accents.\nBackground: solid flat blue backdrop filled with playful doodles — scribbles, symbols, stars, X marks, clouds, lightning, smiley icons.\nGFX Elements:\nhand-drawn sketch lines\ngraffiti marks\nfloating doodle icons\nminimal comic accents\nLighting: soft studio lighting with warm highlights on skin, balanced shadows, clean exposure.\nColor palette: blue dominant background, contrasted with red, yellow, white, and denim tones.\nMood: youthful, playful, confident, slightly rebellious, urban creative energy.\nComposition: centered subject, full-body visible, clean negative space, poster-ready layout.\nQuality: ultra-detailed, sharp focus, high resolution, 4K, crisp textures, professional magazine finish.\nAspect ratio: 9:16",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777447482/yucwevnphoigaqa4kxai.png",
+      "image": "https://img.ikyshinicy.xyz/chatgpt-image-17-agu-2026-12-40-49-1786948141121.webp",
       "link": "#"
     },
     {
