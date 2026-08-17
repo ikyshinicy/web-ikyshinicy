@@ -1,6 +1,6 @@
 // ============================================================
 // DATA.JS — Sumber data utama website Iky Shinicy
-// Diupdate otomatis via Admin Panel — 17/8/2026, 15.30.45
+// Diupdate otomatis via Admin Panel — 17/8/2026, 15.32.24
 // ============================================================
 
 const SITE_DATA = {
@@ -297,7 +297,7 @@ const SITE_DATA = {
       "title": "Couple Poster Style [ Upload 2 Photo]",
       "category": "Chatgpt",
       "prompt": "Use Image 1 as the face reference for the male subject and Image 2 as the face reference for the female subject. Create a stylish romantic couple poster where the entire visual direction is fully driven by [Japan]. The chosen theme acts as the master visual controller, determining the pose, body language, facial expression, outfit styling, accessories, color palette, typography, graphic elements, background design, lighting mood, and overall atmosphere. Everything in the composition must feel cohesive, visually consistent, and naturally aligned with the selected theme.\nThe male and female subjects should appear as a real romantic couple with natural chemistry, authentic interaction, and body language that fits the theme. Replace the main title with \"[JAPAN STYLE]\" and supporting text with \"[SAKURA MOOD]\", both styled to match the visual identity of the chosen theme. Add subtle decorative symbols, textures, ornaments, and design motifs that naturally belong to the theme. Clean premium composition, soft diffused lighting, sharp focus, high detail, stylish modern editorial poster, cohesive branded visual design.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777482551/b6ehyplb9y7ch0qr0vwl.png",
+      "image": "https://img.ikyshinicy.xyz/file-0000000034c07207bffc549816473365-1786948302539.webp",
       "link": "#"
     },
     {
@@ -305,7 +305,7 @@ const SITE_DATA = {
       "title": "Urban Polaroid",
       "category": "Chatgpt",
       "prompt": "Create a dark extreme urban conceptual portrait of the uploaded person, centered in a tight close-up with a sharp frontal stare, calm but intimidating expression, and strong symmetrical composition, styled as a raw underground punk editorial poster with aggressive street energy. The subject wears black rectangular glasses, messy blue-black hair with cold metallic tones, and a dark oversized distressed band shirt, standing against a brutal urban grunge wall covered in torn gig posters, spray paint tags, anarchist symbols, scratched textures, ripped stickers, cigarette burns, chaotic underground music visuals, and large hand-painted graffiti text reading “IKY SHINICY” prominently on the wall as the main street-tag identity element. The image uses an extreme selective color effect: nearly the entire portrait is desaturated into harsh black-and-white with deep crushed shadows, while only the hair, lips, shirt details, skin inside the polaroid frames, and subtle neon blue highlights remain in color. Two dirty worn polaroid frames are held over the face, one revealing a single eye in vivid natural color and the other exposing the mouth and jawline in warm skin tones, creating a fractured identity / hidden rage effect. Add rough urban imperfections like paint drips, motion blur smears, dust, film grain, cracked concrete texture, subtle blood-red graffiti accents, dirty shadows, and moody blue neon spill. Lighting is cinematic, harsh, and low-key with strong contrast, dramatic shadow cuts, gritty texture, and underground street-photography atmosphere, blending dark punk rebellion, urban decay, underground youth culture, and brutal modern editorial aesthetics.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777536190/kapgtajomj3tevbmig3j.png",
+      "image": "https://img.ikyshinicy.xyz/file-00000000512c7207a51606c05590ae04-1786948339980.webp",
       "link": "#"
     },
     {
