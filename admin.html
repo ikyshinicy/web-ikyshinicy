@@ -377,7 +377,6 @@
 <script>
 const R2_WORKER_URL = 'https://r2-upload-proxy.rranzabussines.workers.dev';
 const PASS_HASH = '484728c4e7ad15ba197d3eda8934e3707fb9488115de9d1a4a0f0b50cf676f18';
-const GITHUB_TOKEN = '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'
 
 // ============ AUTH ============
 async function doLogin() {
@@ -936,44 +935,22 @@ async function publishToGitHub() {
   const btns = document.querySelectorAll('.btn-success');
   btns.forEach(b => { b.textContent = '⏳ Mengirim...'; b.disabled = true; });
   try {
-    // Ambil SHA file data.js yang ada dulu
-    const shaRes = await fetch('https://api.github.com/repos/ikyshinicy/rizkyreranza/contents/data.js', {
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Accept': 'application/vnd.github.v3+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-      }
-    });
-    const shaData = await shaRes.json();
-    const sha = shaData.sha;
-
-    // Encode content ke base64
+    // Generate isi data.js, lalu kirim ke API route Vercel (token aman di server)
     const content = generateDataJs();
-    const encoded = btoa(unescape(encodeURIComponent(content)));
 
-    // Update data.js di GitHub
-    const res = await fetch('https://api.github.com/repos/ikyshinicy/rizkyreranza/contents/data.js', {
-      method: 'PUT',
-      mode: 'cors',
-      headers: {
-        'Authorization': `token ${GITHUB_TOKEN}`,
-        'Content-Type': 'application/json',
-        'Accept': 'application/vnd.github.v3+json',
-        'X-GitHub-Api-Version': '2022-11-28'
-      },
-      body: JSON.stringify({
-        message: 'Update data.js via Admin Panel',
-        content: encoded,
-        sha: sha
-      })
+    const res = await fetch('/api/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ content })
     });
 
-    if (res.ok) {
+    const result = await res.json();
+
+    if (res.ok && result.success) {
       toast('🚀 Berhasil publish! Website update dalam ~30 detik.', 'success');
       markSaved();
     } else {
-      const err = await res.json();
-      toast('Gagal: ' + (err.message || 'Unknown error'), 'error');
+      toast('Gagal: ' + (result.error || 'Unknown error'), 'error');
     }
   } catch(e) {
     toast('Error: ' + e.message, 'error');
