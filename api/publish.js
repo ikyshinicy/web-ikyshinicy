@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   const GITHUB_TOKEN  = process.env.GITHUB_TOKEN;
   const GITHUB_USER   = process.env.GITHUB_USER   || 'ikyshinicy';
-  const GITHUB_REPO   = process.env.GITHUB_REPO   || 'rizkyreranza';
+  const GITHUB_REPO   = process.env.GITHUB_REPO   || 'web-ikyshinicy';
   const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
   const GITHUB_PATH   = process.env.GITHUB_PATH   || 'js/data.js';
 
