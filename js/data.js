@@ -1,6 +1,6 @@
 // ============================================================
 // DATA.JS — Sumber data utama website Iky Shinicy
-// Diupdate otomatis via Admin Panel — 17/8/2026, 15.29.07
+// Diupdate otomatis via Admin Panel — 17/8/2026, 15.30.45
 // ============================================================
 
 const SITE_DATA = {
@@ -329,7 +329,7 @@ const SITE_DATA = {
       "title": "Anubis Style",
       "category": "Chatgpt",
       "prompt": "Ultra-realistic cinematic Egyptian god portrait, Anubis-inspired male character, strong masculine presence.\n\nFraming: medium close-up (chest to head), centered, symmetrical composition.\n\nPose: still frontal stance, shoulders squared, chest slightly forward, one hand holding a black Anubis mask beside the face (half-reveal concept), controlled and dominant posture.\n\nExpression: calm intense gaze, slightly narrowed eyes, no smile, cold confidence, mysterious aura, direct eye contact.\n\nLighting: warm golden cinematic lighting evenly distributed across face and body, unified skin illumination, soft shadow transitions, strong but controlled highlights, subtle rim light, no harsh contrast on face, natural light falloff.\n\nSkin detail: realistic wet sweat effect across face and body, visible moisture on forehead, cheeks, neck, chest, and shoulders, consistent glossy reflections, skin pores still visible (not plastic), balanced specular highlights.\n\nBody: athletic muscular physique, defined chest and shoulders, natural proportions.\n\nOutfit: bare upper body, detailed Egyptian gold collar with blue accents, gold bracelets, single hoop earring.\n\nTextures: reflective sweaty skin, polished gold jewelry, matte engraved Anubis mask with sharp detail.\n\nBackground: blurred ancient Egyptian temple, soft fabric curtains, Anubis statues, shallow depth of field.\n\nColor: gold, bronze, warm brown, black accents.\n\nMood: divine, powerful, seductive, calm dominance, mystical presence.\n\nStyle control: clean composition, no distortion, no overexposed highlights, no overly dark shadows, natural realism.\n\nQuality: ultra-detailed, 8K, sharp focus, professional fashion editorial, high realism, cinematic depth.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777659088/awgmjqgs1p6ych9a6eao.png",
+      "image": "https://img.ikyshinicy.xyz/file-00000000e6187207ba42d38e42be6df2-1786948236373.webp",
       "link": "#"
     },
     {
