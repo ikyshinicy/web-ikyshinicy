@@ -740,6 +740,52 @@ function handleUrlInput(input, previewId) {
   else preview.classList.remove('show');
 }
 
+// ============ AUTO THUMBNAIL DARI LINK (screenshot) ============
+async function generateThumbFromLink(btn) {
+  const linkInput = document.getElementById('pj-link');
+  const url = (linkInput?.value || '').trim();
+
+  if (!/^https?:\/\/.+/i.test(url)) {
+    toast('Isi link yang valid (harus diawali https://) dulu', 'error');
+    return;
+  }
+
+  const originalLabel = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Mengambil tampilan...';
+
+  // Layanan screenshot publik (tanpa API key) — render tampilan halaman apa adanya
+  const shotUrl = 'https://image.thum.io/get/width/1200/crop/900/noanimate/' + url;
+
+  const statusId = 'pj-image-status';
+  const previewId = 'pj-image-preview';
+  const progressId = 'pj-image-progress';
+  const statusEl = document.getElementById(statusId);
+  const previewEl = document.getElementById(previewId);
+  if (statusEl) { statusEl.textContent = '⏳ Mengambil screenshot dari link...'; statusEl.className = 'img-upload-status uploading'; }
+
+  try {
+    // Ambil gambar screenshot lalu proses lewat pipeline upload R2 yang sama (permanen, terkompresi)
+    const res = await fetch(shotUrl, { mode: 'cors' });
+    if (!res.ok) throw new Error('Gagal mengambil screenshot');
+    const blob = await res.blob();
+    const file = new File([blob], 'thumbnail-' + Date.now() + '.jpg', { type: blob.type || 'image/jpeg' });
+    await uploadToR2(file, 'pj-image', previewId, progressId, statusId);
+    toast('Thumbnail otomatis berhasil dibuat dari link!', 'success');
+  } catch (err) {
+    // Fallback: kalau fetch diblokir CORS, pakai langsung URL screenshot-nya
+    console.warn('Fetch screenshot gagal, fallback ke URL langsung:', err);
+    const inputEl = document.getElementById('pj-image');
+    if (inputEl) inputEl.value = shotUrl;
+    if (previewEl) { previewEl.src = shotUrl; previewEl.classList.add('show'); }
+    if (statusEl) { statusEl.textContent = '✓ Thumbnail otomatis terpasang (live dari link)'; statusEl.className = 'img-upload-status done'; }
+    toast('Thumbnail dipasang otomatis dari link', 'success');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = originalLabel;
+  }
+}
+
 // ============ MODAL ============
 let modalType = null, modalIndex = -1;
 
@@ -766,11 +812,15 @@ function openModal(type, index) {
       </div>` +
       sf('text','pj-year','Tahun',p.year||new Date().getFullYear(),'') +
       sf('textarea','pj-desc','Deskripsi',p.desc,'') +
-      imageUploadField('pj-image','Gambar Project',p.image) +
       `<div id="pj-link-wrap" style="display:${p.link && p.link !== '#' ? 'block' : 'none'}">
         <label class="field-label">Link Website / Produk</label>
-        <input type="url" class="field-input" id="pj-link" value="${p.link && p.link !== '#' ? p.link : ''}" placeholder="https://..."/>
+        <div style="display:flex;gap:8px;">
+          <input type="url" class="field-input" id="pj-link" value="${p.link && p.link !== '#' ? p.link : ''}" placeholder="https://..." style="flex:1"/>
+          <button type="button" class="btn btn-ghost btn-sm" style="white-space:nowrap" onclick="generateThumbFromLink(this)">🪄 Auto Thumbnail</button>
+        </div>
+        <span style="font-size:11px;color:rgba(255,255,255,.3)">Ambil screenshot otomatis dari tampilan halaman link di atas.</span>
       </div>` +
+      imageUploadField('pj-image','Gambar Project',p.image) +
       progressField(p.progress) +
       `<label style="display:flex;align-items:center;gap:10px;cursor:pointer;font-size:14px;color:rgba(255,255,255,.7)">
         <input type="checkbox" id="pj-featured" ${p.featured?'checked':''} style="width:16px;height:16px;accent-color:var(--sky)"/>
