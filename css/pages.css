@@ -63,6 +63,28 @@ body[data-page="projects"] .progress-fill { background:linear-gradient(90deg,var
 body[data-page="projects"] .progress-pct { color:var(--blue) !important; }
 body[data-page="projects"] .count-badge { background:rgba(27,110,243,.12) !important; color:var(--blue) !important; border-color:rgba(27,110,243,.2) !important; }
 
+/* ================= PROJECT CATEGORY (light blue / blue) ================= */
+body[data-page="project-category"] { background:#E1EFFB !important; color:var(--ink) !important; }
+body[data-page="project-category"] .page-hero { background:#F7F1E8; padding-bottom:40px !important; }
+body[data-page="project-category"] .page-hero h1 { color:var(--ink) !important; }
+body[data-page="project-category"] .page-hero h1 span { color:var(--blue) !important; }
+body[data-page="project-category"] .page-hero p { color:var(--muted) !important; }
+body[data-page="project-category"] .back-btn { color:var(--muted) !important; }
+body[data-page="project-category"] .back-btn:hover { color:var(--ink) !important; }
+body[data-page="project-category"] .project-card { background:#fff !important; border:1px solid rgba(14,14,14,.06) !important; box-shadow:0 6px 20px rgba(27,110,243,.08) !important; }
+body[data-page="project-category"] .project-card:hover { border-color:rgba(27,110,243,.2) !important; box-shadow:0 16px 34px rgba(27,110,243,.16) !important; }
+body[data-page="project-category"] .project-img { background:#eef2f8 !important; }
+body[data-page="project-category"] .project-cat { color:var(--blue) !important; }
+body[data-page="project-category"] .project-year { color:var(--muted) !important; }
+body[data-page="project-category"] .project-title { color:var(--ink) !important; }
+body[data-page="project-category"] .project-desc { color:var(--muted) !important; }
+body[data-page="project-category"] .progress-text { color:var(--muted) !important; }
+body[data-page="project-category"] .progress-track { background:rgba(14,14,14,.08) !important; }
+body[data-page="project-category"] .progress-fill { background:linear-gradient(90deg,var(--blue),var(--sky)) !important; }
+body[data-page="project-category"] .progress-pct { color:var(--blue) !important; }
+body[data-page="project-category"] .project-link { color:var(--blue) !important; border-color:rgba(27,110,243,.25) !important; }
+body[data-page="project-category"] .project-link:hover { background:var(--blue) !important; color:#fff !important; }
+
 /* ================= SERVICE (warm cream / orange) ================= */
 body[data-page="service"] { background:#FBF3E7 !important; color:var(--ink) !important; }
 body[data-page="service"] .hero { background:#FCE7C9 !important; border-bottom:none !important; }

@@ -73,6 +73,7 @@
     // ---- Organic wave dividers (match Home design system) ----
     var CFG = {
       'projects.html':      { atmo: '#E1EFFB', heroBg: '#F7F1E8', hero: '.page-hero' },
+      'project-category.html': { atmo: '#E1EFFB', heroBg: '#F7F1E8', hero: '.page-hero' },
       'galleryprompt.html': { atmo: '#E9E4F8', heroBg: '#F7F1E8', hero: '.page-hero' },
       'service.html':       { atmo: '#FBF3E7', heroBg: '#FCE7C9', hero: '.hero' },
       'about.html':         { atmo: '#F7F1E8', heroBg: null,      hero: '.about-hero' }
