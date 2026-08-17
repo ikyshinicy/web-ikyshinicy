@@ -1,6 +1,6 @@
 // ============================================================
 // DATA.JS — Sumber data utama website Iky Shinicy
-// Diupdate otomatis via Admin Panel — 17/8/2026, 15.45.07
+// Diupdate otomatis via Admin Panel — 17/8/2026, 15.45.22
 // ============================================================
 
 const SITE_DATA = {
