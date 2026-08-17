@@ -754,32 +754,30 @@ async function generateThumbFromLink(btn) {
   btn.disabled = true;
   btn.innerHTML = '⏳ Mengambil tampilan...';
 
-  // Layanan screenshot publik (tanpa API key) — render tampilan halaman apa adanya
-  const shotUrl = 'https://image.thum.io/get/width/1200/crop/900/noanimate/' + url;
+  // Diproses lewat server sendiri (api/screenshot.js) supaya tidak kena CORS
+  // dan hasilnya SELALU lanjut upload ke Cloudflare R2 — konsisten semua link.
+  const proxyUrl = '/api/screenshot?url=' + encodeURIComponent(url);
 
   const statusId = 'pj-image-status';
   const previewId = 'pj-image-preview';
   const progressId = 'pj-image-progress';
   const statusEl = document.getElementById(statusId);
-  const previewEl = document.getElementById(previewId);
   if (statusEl) { statusEl.textContent = '⏳ Mengambil screenshot dari link...'; statusEl.className = 'img-upload-status uploading'; }
 
   try {
-    // Ambil gambar screenshot lalu proses lewat pipeline upload R2 yang sama (permanen, terkompresi)
-    const res = await fetch(shotUrl, { mode: 'cors' });
-    if (!res.ok) throw new Error('Gagal mengambil screenshot');
+    const res = await fetch(proxyUrl);
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({}));
+      throw new Error(err.error || 'Gagal mengambil screenshot');
+    }
     const blob = await res.blob();
     const file = new File([blob], 'thumbnail-' + Date.now() + '.jpg', { type: blob.type || 'image/jpeg' });
     await uploadToR2(file, 'pj-image', previewId, progressId, statusId);
-    toast('Thumbnail otomatis berhasil dibuat dari link!', 'success');
+    toast('Thumbnail otomatis berhasil dibuat & diupload ke R2!', 'success');
   } catch (err) {
-    // Fallback: kalau fetch diblokir CORS, pakai langsung URL screenshot-nya
-    console.warn('Fetch screenshot gagal, fallback ke URL langsung:', err);
-    const inputEl = document.getElementById('pj-image');
-    if (inputEl) inputEl.value = shotUrl;
-    if (previewEl) { previewEl.src = shotUrl; previewEl.classList.add('show'); }
-    if (statusEl) { statusEl.textContent = '✓ Thumbnail otomatis terpasang (live dari link)'; statusEl.className = 'img-upload-status done'; }
-    toast('Thumbnail dipasang otomatis dari link', 'success');
+    console.error('Auto thumbnail gagal:', err);
+    if (statusEl) { statusEl.textContent = '✗ Gagal mengambil screenshot.'; statusEl.className = 'img-upload-status err'; }
+    toast('Gagal membuat thumbnail otomatis: ' + err.message, 'error');
   } finally {
     btn.disabled = false;
     btn.innerHTML = originalLabel;
