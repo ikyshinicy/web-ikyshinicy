@@ -1,6 +1,6 @@
 // ============================================================
 // DATA.JS — Sumber data utama website Iky Shinicy
-// Diupdate otomatis via Admin Panel — 17/8/2026, 15.45.22
+// Diupdate otomatis via Admin Panel — 17/8/2026, 15.49.59
 // ============================================================
 
 const SITE_DATA = {
@@ -289,7 +289,7 @@ const SITE_DATA = {
       "title": "Streetwear Comic",
       "category": "Chatgpt",
       "prompt": "Use Image 1 as the face reference for the male subject and Image 2 as the face reference for the female subject. Create a romantic couple poster with natural affectionate chemistry. The male subject stands in front, young Indonesian male, clean-cut look, wearing a gray hoodie with small black \"IKYSHINICY\" text on the chest, black glasses, both hands inside hoodie pocket, top-down overhead camera angle, looking up confidently. The female subject stands closely behind him as his romantic partner, leaning gently toward him with soft affectionate body language, warm intimate couple chemistry, sweet natural connection, elegant and attractive, long soft hair, fashionable modern outfit, stylish and charming. Clean white studio background, soft diffused studio lighting. Large bold bubble cartoon text \"[KICAU]\" and \"[Mania]\" overlaid at the top with thick black outline, bright yellow lightning bolt stickers, small red flower accent, plus subtle playful hand-drawn doodles (small stars, spark lines, curved swirls, tiny arrows, minimal abstract scribbles) scattered lightly around the composition. Romantic streetwear editorial style, modern youth branding, ultra clean composition, sharp focus, high detail, vibrant but minimal graphic design, trendy romantic couple poster aesthetic.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777481725/s4hxbm39avdbozlzfhdj.png",
+      "image": "https://img.ikyshinicy.xyz/file-00000000b7a87207827427d06e7b4a7c-1786949148847.webp",
       "link": "#"
     },
     {
@@ -321,7 +321,7 @@ const SITE_DATA = {
       "title": "Silent Street",
       "category": "Chatgpt",
       "prompt": "Use the uploaded face as the ONLY facial identity reference, preserving 100% exact facial structure, proportions, skin tone, and realism with strict identity lock (no alteration at all), and create an ultra-realistic very dark cinematic streetwear editorial magazine cover portrait in 3:4 aspect ratio with a tight close-up (head to upper chest), centered symmetrical framing, subject facing forward with intense, sharp, slightly narrowed eyes emerging from shadow, expression serious, cold, dominant, and highly mysterious (no smile); style the subject wearing a glossy wet-look deep blue streetwear windbreaker with pink accents, zipped extremely high to cover the face up to just below the eyes (maximum face concealment for mystery) with heavy visible water droplets, paired with a dark blue bucket hat (clearly blue, not red or other colors) with subtle white graffiti logo and small metallic stud earrings; apply very low-key cinematic lighting from slightly above with deep shadows covering most of the face, only the eyes and upper nose bridge partially visible, creating a strong mysterious mood; use urban dark color grading with cool blue dominance, crushed blacks, reduced skin brightness, gritty desaturated tone, high contrast, and cinematic film grain; background is a dark black textured graffiti wall with layered street art, paint splashes, and urban typography; include full magazine cover design with bold white graffiti-style title at top (“STREET CULTURE”), additional white and pink graffiti tags, editorial text blocks on left, phrases “International Tribe,” “Built for the Long Haul,” and “Iky Shinicy,” with paint strokes slightly overlapping the subject, plus barcode and issue text; shot with 85mm lens look, shallow depth of field, ultra-detailed skin texture, sharp focus on eyes, photorealistic, high detail, extra dark cinematic mood prioritized over all other elements.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1777563818/twsdckpupejciyikdlyn.png",
+      "image": "https://img.ikyshinicy.xyz/file-00000000006c7208a16f471ca4397f50-1786949338949.webp",
       "link": "#"
     },
     {
@@ -353,7 +353,7 @@ const SITE_DATA = {
       "title": "Tamplate Photo",
       "category": "Chatgpt",
       "prompt": "Ultra-realistic half-body portrait using the uploaded image as the ONLY facial identity reference, with strict identity lock and no alteration of core facial features. The subject is centered in a vertical 4:5 or 9:16 frame, captured from mid-torso up, maintaining exact facial likeness, natural proportions, and realistic skin texture.\nPose is natural and confident: body slightly angled (three-quarter pose), shoulders relaxed, head gently turned toward camera. Expression is calm, soft, and self-assured with a subtle closed-mouth smile or neutral confident look. Eyes sharp and engaging.\nOutfit is clean and modern (adaptable template): minimalist streetwear or smart casual, well-fitted, neutral or slightly stylish tones, no heavy patterns unless specified. Styling must look premium and timeless.\nLighting is soft studio lighting: diffused key light from front/side, smooth shadows, no harsh contrast, flattering facial illumination, cinematic but clean.\nBackground is simple and versatile for template use: plain light gray / white / soft gradient, clean and distraction-free. Optional subtle texture for depth (very minimal).\nComposition is balanced and professional: head positioned slightly above center, enough negative space around for text placement (top or side areas kept clean).\nStyle: ultra-clean, high detail, sharp focus, editorial photography, modern branding look, suitable for profile, thumbnail, or main identity image.\nNo distortion, no exaggerated features, no style overtake — realism and identity accuracy are priority.",
-      "image": "https://res.cloudinary.com/dipsvuknp/image/upload/v1778074512/p7vwnsbik4xij8rm6oba.png",
+      "image": "https://img.ikyshinicy.xyz/file-000000003fec720ba78df7e6b60cb124-1786949217543.webp",
       "link": "#"
     },
     {
