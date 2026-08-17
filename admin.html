@@ -649,7 +649,12 @@ async function uploadToR2(file, inputId, previewId, progressId, statusId) {
     if (statusEl) statusEl.textContent = '⏳ Mengupload ke R2...';
 
     // Upload ke Cloudflare R2 via Worker
-    const filename = file.name.replace(/\.[^.]+$/, '') + '-' + Date.now() + '.webp';
+    const safeName = file.name.replace(/\.[^.]+$/, '')
+      .normalize('NFKD').replace(/[\u0300-\u036f]/g, '')  // buang aksen
+      .replace(/[^a-zA-Z0-9]+/g, '-')                       // spasi/simbol -> strip
+      .replace(/^-+|-+$/g, '')                              // buang strip di ujung
+      .toLowerCase() || 'img';
+    const filename = safeName + '-' + Date.now() + '.webp';
     const formData = new FormData();
     formData.append('file', compressed, filename);
     formData.append('filename', filename);
