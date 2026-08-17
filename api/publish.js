@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   const GITHUB_USER   = process.env.GITHUB_USER   || 'ikyshinicy';
   const GITHUB_REPO   = process.env.GITHUB_REPO   || 'rizkyreranza';
   const GITHUB_BRANCH = process.env.GITHUB_BRANCH || 'main';
-  const GITHUB_PATH   = process.env.GITHUB_PATH   || 'data.js';
+  const GITHUB_PATH   = process.env.GITHUB_PATH   || 'js/data.js';
 
   if (!GITHUB_TOKEN) {
     return res.status(500).json({ error: 'GITHUB_TOKEN belum diset di Vercel Environment Variables.' });
