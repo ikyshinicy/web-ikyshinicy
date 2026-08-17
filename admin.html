@@ -405,7 +405,7 @@ function getDefaultData() {
 
 async function fetchDataFromGitHub() {
   const cacheBust = '?t=' + Date.now();
-  const urls = ['../data.js' + cacheBust, './data.js' + cacheBust, '/data.js' + cacheBust];
+  const urls = ['/js/data.js' + cacheBust, 'js/data.js' + cacheBust, './js/data.js' + cacheBust];
   for (const url of urls) {
     try {
       const res = await fetch(url, { cache: 'no-store' });
