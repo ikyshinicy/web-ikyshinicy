@@ -248,14 +248,6 @@
     setTimeout(() => { btn.textContent = 'Kirim Pesan →'; btn.style.background = ''; }, 3000);
   }
 </script>
-  <div id="support-section"></div>
-<script>
-  // Load support section jika file tersedia
-  fetch('partials/support-section.html')
-    .then(r => { if (!r.ok) throw new Error('not found'); return r.text(); })
-    .then(html => { document.getElementById('support-section').innerHTML = html; })
-    .catch(() => { /* File tidak ada, diabaikan */ });
-</script>
 <script src="js/chrome.js" defer></script>
 </body>
 </html>

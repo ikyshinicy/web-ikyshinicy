@@ -41,25 +41,13 @@
           '<div class="sf-col"><h4>Navigation</h4>' +
             NAV.map(function (n) { return '<a href="' + n[0] + '">' + n[1] + '</a>'; }).join('') +
           '</div>' +
-          '<div class="sf-col"><h4>Support</h4>' +
-            '<a href="https://saweria.co/ikyshinicy" target="_blank" rel="noopener">Saweria</a>' +
-            '<a href="https://ko-fi.com/ikyshinicy" target="_blank" rel="noopener">Ko-fi</a>' +
-            '<a href="https://trakteer.id/ikyshinicy/tip" target="_blank" rel="noopener">Trakteer</a>' +
-          '</div>' +
           '<div class="sf-col"><h4>Connect</h4><div class="sf-social">' +
             '<a href="https://instagram.com/ikyshinicy" target="_blank" rel="noopener" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg></a>' +
             '<a href="https://www.youtube.com/@ikyshinicy" target="_blank" rel="noopener" aria-label="YouTube"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.42a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58 2.78 2.78 0 0 0 1.94 2C5.12 20 12 20 12 20s6.88 0 8.6-.42a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"/></svg></a>' +
             '<a href="https://www.tiktok.com/@ikyshinicy" target="_blank" rel="noopener" aria-label="TikTok"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg></a>' +
           '</div></div>' +
         '</div>' +
-        '<div class="sf-support"><div id="support-section"></div></div>' +
         '<div class="sf-bottom"><span>© 2026 Rizky Reranza. All rights reserved.</span></div>';
-
-      // re-load the support bar into the freshly rendered footer
-      fetch('partials/support-section.html').then(function (r) { return r.text(); }).then(function (html) {
-        var el = document.getElementById('support-section');
-        if (el) el.innerHTML = html;
-      }).catch(function () {});
     }
 
     // Give page hero accent words a playful brush style

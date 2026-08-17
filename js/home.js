@@ -125,12 +125,6 @@ function toggleMusic() {
   else { music.pause(); sessionStorage.removeItem('musicStarted'); }
 }
 
-// ---- Support bar (footer) ----
-fetch('partials/support-section.html').then(r => r.text()).then(html => {
-  const el = document.getElementById('support-section');
-  if (el) el.innerHTML = html;
-}).catch(() => {});
-
 // ---- Boot ----
 init();
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
